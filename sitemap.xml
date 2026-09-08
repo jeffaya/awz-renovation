@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://www.awz-renovation.fr/</loc></url><url><loc>https://www.awz-renovation.fr/realisations.html</loc></url><url><loc>https://www.awz-renovation.fr/contact.html</loc></url><url><loc>https://www.awz-renovation.fr/mentions-legales.html</loc></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.awz-renovation.fr/</loc></url>
+  <url><loc>https://www.awz-renovation.fr/realisations.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/contact.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/macon-chinon.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/renovation-saumur.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/tuffeau-avoine.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/langeais.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/azay-le-rideau.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/richelieu.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/loudun.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/tours.html</loc></url>
+  <url><loc>https://www.awz-renovation.fr/noyant.html</loc></url>
+</urlset>
