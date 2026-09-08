@@ -2,23 +2,14 @@ const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelecto
 const menuBtn=$('#menu-btn'),mobileMenu=$('#mobile-menu');
 if(menuBtn&&mobileMenu){menuBtn.addEventListener('click',()=>{mobileMenu.classList.toggle('hidden');document.body.classList.toggle('no-scroll');menuBtn.setAttribute('aria-expanded',String(!mobileMenu.classList.contains('hidden')))});$$('a',mobileMenu).forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.add('hidden');document.body.classList.remove('no-scroll')}));}
 $$('.comparison').forEach(c=>{const input=$('input',c),after=$('.after',c),handle=$('.handle',c);if(input){const update=()=>{after.style.width=input.value+'%';handle.style.left=input.value+'%';};input.addEventListener('input',update);update();}});
-$$('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{const filter=btn.dataset.filter;$$('[data-filter]').forEach(b=>b.classList.remove('bg-[#14362e]','text-white'));btn.classList.add('bg-[#14362e]','text-white');$$('[data-project]').forEach(card=>{card.classList.toggle('hidden',filter!=='all'&&card.dataset.project!==filter)});}));
+$$('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{const filter=btn.dataset.filter;$$('[data-filter]').forEach(b=>b.classList.toggle('filter-active',b===btn));$$('[data-project]').forEach(card=>{card.classList.toggle('hidden',filter!=='all'&&card.dataset.project!==filter)});}));
 const y=$('#year');if(y)y.textContent=new Date().getFullYear();
 
-const contactForm=$('#contact-form');
-if(contactForm){
-  contactForm.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    const data=new FormData(contactForm);
-    const subject=encodeURIComponent('Demande de devis AWZ-Rénovation - '+(data.get('Nom')||'Nouveau contact'));
-    const body=encodeURIComponent(
-      'Nom : '+(data.get('Nom')||'')+'\n'+
-      'Téléphone : '+(data.get('Téléphone')||'')+'\n'+
-      'Email : '+(data.get('Email')||'')+'\n'+
-      'Code postal : '+(data.get('Code postal')||'')+'\n'+
-      'Type de travaux : '+(data.get('Type de travaux')||'')+'\n\n'+
-      'Projet :\n'+(data.get('Message')||'')
-    );
-    window.location.href='mailto:antonywouenzell@yahoo.fr?subject='+subject+'&body='+body;
-  });
-}
+
+const photos=$('#photos'),photoStatus=$('#photo-status');
+if(photos&&photoStatus){photos.addEventListener('change',()=>{const files=[...photos.files];if(files.length>5){alert('Merci de sélectionner 5 photos maximum.');photos.value='';photoStatus.textContent='Appuyez ici pour choisir ou prendre des photos';return;}photoStatus.textContent=files.length?files.length+' photo'+(files.length>1?'s':'')+' sélectionnée'+(files.length>1?'s':''):'Appuyez ici pour choisir ou prendre des photos';});}
+const galleryModal=$('#gallery-modal'),galleryImage=$('#gallery-image'),galleryCaption=$('#gallery-caption');
+let galleryItems=[],galleryIndex=0;
+function showGallery(i){if(!galleryModal)return;galleryIndex=(i+galleryItems.length)%galleryItems.length;const item=galleryItems[galleryIndex];galleryImage.src=item.src;galleryImage.alt=item.alt||'Photo de réalisation';galleryCaption.textContent=item.alt||'';galleryModal.classList.add('is-open');galleryModal.setAttribute('aria-hidden','false');document.body.classList.add('no-scroll');}
+$$('.gallery-open').forEach(btn=>btn.addEventListener('click',e=>{e.stopPropagation();const comp=btn.closest('.comparison');galleryItems=$$('img',comp).map(img=>({src:img.src,alt:img.alt}));if(galleryItems.length)showGallery(0);}));
+if(galleryModal){$('.gallery-close',galleryModal).addEventListener('click',()=>{galleryModal.classList.remove('is-open');galleryModal.setAttribute('aria-hidden','true');document.body.classList.remove('no-scroll');});$('.gallery-prev',galleryModal).addEventListener('click',()=>showGallery(galleryIndex-1));$('.gallery-next',galleryModal).addEventListener('click',()=>showGallery(galleryIndex+1));galleryModal.addEventListener('click',e=>{if(e.target===galleryModal){galleryModal.classList.remove('is-open');galleryModal.setAttribute('aria-hidden','true');document.body.classList.remove('no-scroll');}});document.addEventListener('keydown',e=>{if(!galleryModal.classList.contains('is-open'))return;if(e.key==='Escape')$('.gallery-close',galleryModal).click();if(e.key==='ArrowLeft')showGallery(galleryIndex-1);if(e.key==='ArrowRight')showGallery(galleryIndex+1);});}
