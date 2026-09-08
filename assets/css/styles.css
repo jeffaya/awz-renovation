@@ -2,7 +2,7 @@ html{scroll-behavior:smooth}.no-scroll{overflow:hidden}.hero-overlay{background:
 .font-serif-display{font-family:Georgia,'Times New Roman',serif}.comparison{position:relative;overflow:hidden}.comparison .after{position:absolute;inset:0;width:50%;overflow:hidden;border-right:2px solid #fff}.comparison .after img{width:200%;max-width:none;height:100%;object-fit:cover}.comparison .handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:999px;background:#fff;color:#14362e;display:grid;place-items:center;box-shadow:0 4px 20px rgba(0,0,0,.22);pointer-events:none}.comparison input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:5}.comparison .label{position:absolute;bottom:12px;z-index:4;background:rgba(0,0,0,.66);color:#fff;padding:.25rem .55rem;border-radius:.25rem;font-size:.7rem;letter-spacing:.08em}.comparison .before-label{left:12px}.comparison .after-label{right:12px}.nav-shadow{box-shadow:0 6px 30px rgba(15,23,42,.08)}
 
 /* Reviews section */
-.reviews-section{background:#fff;border-bottom:1px solid #eee9df}
+.reviews-section{background:#f4f0e7;border-bottom:1px solid #e5ded0}
 .reviews-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2rem;padding:1.4rem 0}
 .review-badges{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.85rem}
 .review-badge{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"source stars" "source copy";align-items:center;column-gap:.8rem;min-width:230px;padding:.8rem 1rem;border:1px solid #e5e7eb;border-radius:14px;background:#fff;color:#111827;text-decoration:none;transition:border-color .18s ease,box-shadow .18s ease}
@@ -23,3 +23,9 @@ html{scroll-behavior:smooth}.no-scroll{overflow:hidden}.hero-overlay{background:
 
 .btn-with-icon{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;line-height:1.25}
 .btn-with-icon .icon-inline{color:currentColor}
+
+
+/* V7 — reviews on sand + intervention pills */
+.zone-pill{display:inline-flex;align-items:center;justify-content:center;transition:background-color .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease}
+.zone-pill:hover,.zone-pill:focus-visible{background:#fff;color:#14362e;border-color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.10);outline:none}
+@media (prefers-reduced-motion:reduce){.zone-pill{transition:none}}
