@@ -22,3 +22,7 @@ V16 : avis Travaux.com ajoutés, hero simplifié, avant/après corrigés sans zo
 - suppression du bloc redondant « Nous desservons aussi les villes suivantes » sur les pages locales ; le footer conserve les zones d’intervention ;
 - ajout d’un visuel local contextualisé sur chaque page ville + nouvelle page Angers ;
 - remplacement des six visuels de services de la homepage par des images propres sans curseur ni élément parasite.
+
+
+## V20
+Pages villes premium : visuel patrimonial intégré au hero, suppression de l'encart City Visual et du bloc zones redondant.
