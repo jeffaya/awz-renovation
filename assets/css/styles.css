@@ -1,20 +1,25 @@
 html{scroll-behavior:smooth}.no-scroll{overflow:hidden}.hero-overlay{background:linear-gradient(90deg,rgba(12,24,20,.82) 0%,rgba(12,24,20,.53) 48%,rgba(12,24,20,.18) 100%)}
 .font-serif-display{font-family:Georgia,'Times New Roman',serif}.comparison{position:relative;overflow:hidden}.comparison .after{position:absolute;inset:0;width:50%;overflow:hidden;border-right:2px solid #fff}.comparison .after img{width:200%;max-width:none;height:100%;object-fit:cover}.comparison .handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:999px;background:#fff;color:#14362e;display:grid;place-items:center;box-shadow:0 4px 20px rgba(0,0,0,.22);pointer-events:none}.comparison input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:5}.comparison .label{position:absolute;bottom:12px;z-index:4;background:rgba(0,0,0,.66);color:#fff;padding:.25rem .55rem;border-radius:.25rem;font-size:.7rem;letter-spacing:.08em}.comparison .before-label{left:12px}.comparison .after-label{right:12px}.nav-shadow{box-shadow:0 6px 30px rgba(15,23,42,.08)}
 
-/* Hero review badges */
-.review-badges{display:flex;flex-wrap:wrap;gap:.75rem;max-width:48rem}
-.review-badge{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"source stars" "source copy";align-items:center;column-gap:.8rem;min-width:220px;padding:.7rem .9rem;border:1px solid rgba(255,255,255,.42);border-radius:14px;background:rgba(8,20,17,.42);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;text-decoration:none;transition:transform .18s ease,background .18s ease,border-color .18s ease}
-.review-badge:hover{transform:translateY(-2px);background:rgba(8,20,17,.62);border-color:rgba(255,255,255,.78)}
-.review-source{grid-area:source;font-weight:800;font-size:.82rem;letter-spacing:.02em}
-.review-stars{grid-area:stars;color:#f8c94f;font-size:1rem;letter-spacing:.09em;line-height:1}
-.review-copy{grid-area:copy;margin-top:.18rem;font-size:.74rem;color:rgba(255,255,255,.86)}
-.review-copy strong{color:#fff}
+/* Reviews section */
+.reviews-section{background:#fff;border-bottom:1px solid #eee9df}
+.reviews-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2rem;padding:1.4rem 0}
+.review-badges{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.85rem}
+.review-badge{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"source stars" "source copy";align-items:center;column-gap:.8rem;min-width:230px;padding:.8rem 1rem;border:1px solid #e5e7eb;border-radius:14px;background:#fff;color:#111827;text-decoration:none;transition:border-color .18s ease,box-shadow .18s ease}
+.review-badge:hover{border-color:#cfd5d2;box-shadow:0 6px 18px rgba(15,23,42,.07)}
+.review-source{grid-area:source;font-weight:800;font-size:.82rem;letter-spacing:.02em;color:#111827}
+.review-stars{grid-area:stars;color:#e6ad13;font-size:1rem;letter-spacing:.09em;line-height:1}
+.review-copy{grid-area:copy;margin-top:.18rem;font-size:.74rem;color:#64748b}
+.review-copy strong{color:#111827}
+@media (max-width:900px){.reviews-panel{grid-template-columns:1fr}.review-badges{justify-content:flex-start}}
 @media (max-width:640px){.review-badges{display:grid}.review-badge{width:100%;min-width:0}}
 
 /* V4 — Bootstrap Icons */
-.icon-inline{display:inline-block;font-size:.95em;line-height:1;vertical-align:-.08em;margin-left:.22rem}
+.icon-inline{display:block;font-size:.95em;line-height:1;color:currentColor;flex:0 0 auto;margin:0}
 .contact-label,.contact-line{display:flex;align-items:center;gap:.65rem}
 .icon-contact{display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem;line-height:1;color:currentColor;flex:0 0 auto}
-.bg-white .icon-contact{color:#111827}
 .contact-line a{color:inherit;text-decoration:none}
 .contact-line a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.btn-with-icon{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;line-height:1.25}
+.btn-with-icon .icon-inline{color:currentColor}
