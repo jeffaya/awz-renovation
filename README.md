@@ -16,3 +16,9 @@ Les images de réalisations déjà présentes ont été conservées. Elles devro
 
 
 V16 : avis Travaux.com ajoutés, hero simplifié, avant/après corrigés sans zoom ni inversion visuelle, pictogrammes métier, nettoyage des images inutilisées, mention 24/7 retirée.
+
+
+## V19
+- suppression du bloc redondant « Nous desservons aussi les villes suivantes » sur les pages locales ; le footer conserve les zones d’intervention ;
+- ajout d’un visuel local contextualisé sur chaque page ville + nouvelle page Angers ;
+- remplacement des six visuels de services de la homepage par des images propres sans curseur ni élément parasite.
