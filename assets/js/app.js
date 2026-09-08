@@ -1,7 +1,7 @@
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const menuBtn=$('#menu-btn'),mobileMenu=$('#mobile-menu');
 if(menuBtn&&mobileMenu){menuBtn.addEventListener('click',()=>{mobileMenu.classList.toggle('hidden');document.body.classList.toggle('no-scroll');menuBtn.setAttribute('aria-expanded',String(!mobileMenu.classList.contains('hidden')))});$$('a',mobileMenu).forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.add('hidden');document.body.classList.remove('no-scroll')}));}
-$$('.comparison').forEach(c=>{const input=$('input',c),after=$('.after',c),handle=$('.handle',c);if(input){const update=()=>{after.style.width=input.value+'%';handle.style.left=input.value+'%';};input.addEventListener('input',update);update();}});
+$$('.comparison').forEach(c=>{const input=$('input',c),before=$('.comparison-before',c),handle=$('.handle',c);if(input&&before&&handle){const update=()=>{before.style.clipPath=`inset(0 ${100-input.value}% 0 0)`;handle.style.left=input.value+'%';};input.addEventListener('input',update);update();}});
 $$('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{const filter=btn.dataset.filter;$$('[data-filter]').forEach(b=>b.classList.toggle('filter-active',b===btn));$$('[data-project]').forEach(card=>{card.classList.toggle('hidden',filter!=='all'&&card.dataset.project!==filter)});}));
 const y=$('#year');if(y)y.textContent=new Date().getFullYear();
 
