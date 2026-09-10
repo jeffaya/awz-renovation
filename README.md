@@ -1,3 +1,9 @@
+# V27
+- Ajout d'une image sociale premium AWZ pour les partages WhatsApp, Facebook, LinkedIn, X et autres plateformes.
+- Image Open Graph 1200×630 en JPEG, plus une version WebP.
+- Balises og:image, og:image:width/height/type/alt et twitter:image ajoutées à toutes les pages.
+- URL sociale absolue : https://www.awz-renovation.fr/assets/images/awz-social-share.jpg
+
 # V26
 - Remplacement de `zone-intervention-awz.webp` par la nouvelle carte validée.
 - Image optimisée en WebP, carte statique sans Google Maps/Leaflet.
