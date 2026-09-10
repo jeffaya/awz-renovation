@@ -1,3 +1,14 @@
+# V29
+
+- Homepage nettoyée.
+- Suppression du bloc redondant contenant :
+  - Assurance décennale
+  - Devis gratuit
+  - SIRET vérifiable
+  - Un seul interlocuteur
+- Le reste de la homepage est inchangé.
+- Conservation de la configuration centralisée `config/site.json` introduite en V28.
+
 # V28
 
 - Open Graph / WhatsApp configuré sur `https://awz-renovation.netlify.app`.
