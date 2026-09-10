@@ -34,3 +34,7 @@ Pages villes premium : visuel patrimonial intégré au hero, suppression de l'en
 - Cartes visuelles des villes reliées à leurs pages locales.
 - Header/footer conservés selon le design system existant.
 - Liens « Zones d’intervention » du site redirigés vers la nouvelle page.
+
+
+## V22 — photographies locales réelles
+Les visuels des villes ont été remplacés par de vraies photographies issues de Wikimedia Commons. Elles sont servies en WebP via wsrv.nl pour conserver le format optimisé du site. Les crédits/licences figurent dans mentions-legales.html.
