@@ -1,3 +1,7 @@
+# V25
+- Remplacement de la carte Leaflet/GoogleMap par le visuel statique validé des zones d’intervention.
+- Visuel optimisé en WebP et intégré à la page Zones d’intervention.
+
 # V24
 - Correction de l’affichage de la carte Zones d’intervention (Leaflet responsive).
 - Correction du positionnement de Chinon.
