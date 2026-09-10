@@ -26,3 +26,11 @@ V16 : avis Travaux.com ajoutés, hero simplifié, avant/après corrigés sans zo
 
 ## V20
 Pages villes premium : visuel patrimonial intégré au hero, suppression de l'encart City Visual et du bloc zones redondant.
+
+
+## V21
+- Nouvelle page dédiée `zones-intervention.html`.
+- Carte interactive OpenStreetMap/Leaflet avec 10 villes cliquables.
+- Cartes visuelles des villes reliées à leurs pages locales.
+- Header/footer conservés selon le design system existant.
+- Liens « Zones d’intervention » du site redirigés vers la nouvelle page.
