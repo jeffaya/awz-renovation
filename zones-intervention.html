@@ -57,7 +57,7 @@ const map=L.map('zone-map',{scrollWheelZoom:false}).setView([47.24,0.08],8);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
 const awzIcon=L.divIcon({className:'awz-map-marker',html:'<span><i class="bi bi-geo-alt-fill"></i></span>',iconSize:[38,38],iconAnchor:[19,36],popupAnchor:[0,-34]});
 L.marker([47.205,0.183], {icon: awzIcon}).addTo(map).bindPopup('<strong>Avoine</strong><br><a href="tuffeau-avoine.html">Voir la page Avoine</a>');
-L.marker([47.167,-0.242], {icon: awzIcon}).addTo(map).bindPopup('<strong>Chinon</strong><br><a href="macon-chinon.html">Voir la page Chinon</a>');
+L.marker([47.167,0.242], {icon: awzIcon}).addTo(map).bindPopup('<strong>Chinon</strong><br><a href="macon-chinon.html">Voir la page Chinon</a>');
 L.marker([47.26,-0.077], {icon: awzIcon}).addTo(map).bindPopup('<strong>Saumur</strong><br><a href="renovation-saumur.html">Voir la page Saumur</a>');
 L.marker([47.394,0.684], {icon: awzIcon}).addTo(map).bindPopup('<strong>Tours</strong><br><a href="tours.html">Voir la page Tours</a>');
 L.marker([47.478,-0.563], {icon: awzIcon}).addTo(map).bindPopup('<strong>Angers</strong><br><a href="angers.html">Voir la page Angers</a>');
@@ -68,4 +68,21 @@ L.marker([47.01,0.083], {icon: awzIcon}).addTo(map).bindPopup('<strong>Loudun</s
 L.marker([47.512,0.117], {icon: awzIcon}).addTo(map).bindPopup('<strong>Noyant</strong><br><a href="noyant.html">Voir la page Noyant</a>');
 const bounds=L.latLngBounds([46.93,-0.6429999999999999],[47.592,0.764]);
 map.fitBounds(bounds,{padding:[22,22]});
+
+/* V24: Leaflet can initialize before the responsive card has its final width.
+   Force a size refresh on load and whenever the map container changes size. */
+const refreshZoneMap = () => {
+  map.invalidateSize({pan:false});
+  map.fitBounds(bounds,{padding:[22,22],animate:false});
+};
+requestAnimationFrame(refreshZoneMap);
+window.addEventListener('load', () => {
+  refreshZoneMap();
+  setTimeout(refreshZoneMap, 150);
+  setTimeout(refreshZoneMap, 600);
+});
+window.addEventListener('resize', refreshZoneMap);
+if ('ResizeObserver' in window) {
+  new ResizeObserver(() => refreshZoneMap()).observe(document.getElementById('zone-map'));
+}
 </script><script src="assets/js/app.js"></script></body></html>

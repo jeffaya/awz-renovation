@@ -1,3 +1,7 @@
+# V24
+- Correction de l’affichage de la carte Zones d’intervention (Leaflet responsive).
+- Correction du positionnement de Chinon.
+
 AWZ-Rénovation V17
 
 - Header complet + intervention rapide sur toutes les pages
