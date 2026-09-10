@@ -1,3 +1,7 @@
+# V26
+- Remplacement de `zone-intervention-awz.webp` par la nouvelle carte validée.
+- Image optimisée en WebP, carte statique sans Google Maps/Leaflet.
+
 # V25
 - Remplacement de la carte Leaflet/GoogleMap par le visuel statique validé des zones d’intervention.
 - Visuel optimisé en WebP et intégré à la page Zones d’intervention.
