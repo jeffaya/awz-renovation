@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://awz-renovation.netlify.app/sitemap.xml

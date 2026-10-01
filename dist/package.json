@@ -1,8 +1,0 @@
-{
-  "name": "awz-renovation-site",
-  "private": true,
-  "version": "33.0.0",
-  "scripts": {
-    "build": "node scripts/build-site.mjs"
-  }
-}

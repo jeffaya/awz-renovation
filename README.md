@@ -1,3 +1,37 @@
+# V38
+
+Simplification définitive de la gestion des images.
+
+- Une seule image WebP haute qualité par visuel, commune au desktop, tablette et mobile.
+- Suppression de toutes les variantes `-640`, `-1200` et `-2000`.
+- Suppression de tous les `srcset` et `sizes`.
+- Suppression de la logique JavaScript de sélection d'image selon la résolution.
+- Les images utilisent désormais directement leur WebP HD principal.
+- Aucun changement fonctionnel sur les réalisations, Avant/Après ou lightbox.
+- Architecture plus générique : une seule image à fournir pour chaque visuel.
+
+# V35
+
+Correctifs réalisations et lightbox.
+
+- Correction des images des réalisations récentes sur la home : chemins et assets vérifiés dans le build final.
+- Ajout d'une lightbox responsive sur les photos de galerie / photos supplémentaires de la page Réalisations.
+- Clic/tap sur une photo : agrandissement en overlay ; clic à l'extérieur, bouton × ou Échap : fermeture.
+- Les comparateurs Avant / Après restent totalement inchangés et ne déclenchent jamais la lightbox.
+- Les 6 images de services haute résolution de V34 sont conservées et vérifiées.
+- « Ravalement & façade » conservé.
+- Variantes responsive WebP conservées.
+
+# V34
+
+- Home : 3 réalisations réelles récentes (2026/2025) à la place des anciens exemples.
+- Services : remplacement des images agrandies artificiellement par des photos AWZ haute résolution issues des sources originales.
+- Service « Façade » renommé « Ravalement & façade ».
+- SEO local : bloc de réalisations récentes ajouté aux pages locales, sans attribuer artificiellement un chantier à une ville.
+- Performance : variantes WebP responsive 640 / 1200 / 2000 px + `srcset` pour services et réalisations.
+- Boutons vers la page complète Réalisations conservés/renforcés.
+- Hero inchangé.
+
 # V33
 
 Qualité renforcée des visuels de services et navigation vers les réalisations.
