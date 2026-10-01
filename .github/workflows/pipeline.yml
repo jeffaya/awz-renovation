@@ -12,16 +12,28 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       deployments: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Prepare static site
+        run: |
+          mkdir -p dist
+          cp -r assets dist/
+          cp *.html dist/
+          cp robots.txt dist/ 2>/dev/null || true
+          cp sitemap.xml dist/ 2>/dev/null || true
+          cp manifest.json dist/ 2>/dev/null || true
+          cp favicon* dist/ 2>/dev/null || true
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=awz-renovation
+          command: pages deploy dist --project-name=awz-renovation
