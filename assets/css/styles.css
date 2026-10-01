@@ -12,7 +12,13 @@ html{scroll-behavior:smooth}.hero-overlay{background:linear-gradient(90deg,rgba(
 .review-copy{grid-area:copy;margin-top:.18rem;font-size:.74rem;color:#64748b}
 .review-copy strong{color:#111827}
 @media (max-width:900px){.reviews-panel{grid-template-columns:1fr}.review-badges{justify-content:flex-start}}
-@media (max-width:640px){.review-badges{display:grid}.review-badge{width:100%;min-width:0}}
+@media (max-width:640px){
+.review-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;width:100%}
+.review-badge{width:100%;min-width:0;padding:.72rem .65rem;grid-template-columns:1fr;grid-template-areas:"source" "stars" "copy";row-gap:.28rem}
+.review-source{font-size:.74rem}
+.review-stars{font-size:.82rem;letter-spacing:.04em;white-space:nowrap}
+.review-copy{font-size:.66rem;white-space:nowrap}
+}
 
 /* V4 — Bootstrap Icons */
 .icon-inline{display:block;font-size:.95em;line-height:1;color:currentColor;flex:0 0 auto;margin:0}

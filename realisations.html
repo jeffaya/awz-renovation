@@ -131,7 +131,8 @@ function comparisonMarkup(p,height='h-80 lg:h-[470px]'){
 function galleryMarkup(p,height='h-80 lg:h-[470px]'){
  const imgs=p.images||[];
  const first=imgs[0]||'';
- const second=imgs[1]||first;
+ if(imgs.length===1)return `<div class="${height} overflow-hidden rounded-2xl bg-stone-100"><img class="awz-zoomable h-full w-full object-cover" src="${first}" alt="${p.title}"></div>`;
+ const second=imgs[1];
  return `<div class="grid grid-cols-2 gap-2 ${height} overflow-hidden rounded-2xl bg-stone-100">
    <img class="awz-zoomable h-full w-full object-cover" src="${first}" alt="${p.title}">
    <img class="awz-zoomable h-full w-full object-cover" src="${second}" alt="${p.title}">
