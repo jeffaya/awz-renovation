@@ -25,106 +25,99 @@
 <div class="mobile-cta" aria-label="Actions rapides"><a href="tel:+33678816696"><i class="bi bi-telephone-fill"></i><span>Appeler AWZ</span></a><a href="contact.html"><i class="bi bi-file-earmark-text"></i><span>Devis</span></a></div><footer class="bg-[#0c1a16] text-white/75"><div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 lg:grid-cols-5 gap-8"><div><img src="assets/images/brand/logo-awz.svg" class="h-16 brightness-0 invert" alt="AWZ Rénovation"><p class="mt-4 text-sm">Maçonnerie · Rénovation · Pierre & Tuffeau</p></div><div><h3 class="text-white font-semibold">Navigation</h3><div class="mt-3 grid gap-2 text-sm"><a href="#services">Services</a><a href="realisations.html">Réalisations</a><a href="#apropos">À propos</a><a href="contact.html">Contact</a></div></div><div><h3 class="text-white font-semibold">Zones d’intervention</h3><div class="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm"><a href="tuffeau-avoine.html" class="hover:text-white transition">Avoine</a><a href="macon-chinon.html" class="hover:text-white transition">Chinon</a><a href="renovation-saumur.html" class="hover:text-white transition">Saumur</a><a href="tours.html" class="hover:text-white transition">Tours</a><a href="angers.html" class="hover:text-white transition">Angers</a><a href="langeais.html" class="hover:text-white transition">Langeais</a><a href="azay-le-rideau.html" class="hover:text-white transition">Azay-le-Rideau</a><a href="richelieu.html" class="hover:text-white transition">Richelieu</a><a href="loudun.html" class="hover:text-white transition">Loudun</a><a href="noyant.html" class="hover:text-white transition">Noyant</a></div><a href="zones-intervention.html" class="mt-4 inline-flex items-center gap-2 text-sm text-white underline underline-offset-4 decoration-white/30 hover:decoration-white">Toutes les zones <i class="bi bi-arrow-right"></i></a></div><div><h3 class="text-white font-semibold">Contact</h3><div class="mt-3 grid gap-2 text-sm"><a href="tel:+33678816696">06 78 81 66 96</a><a href="mailto:antonywouenzell@yahoo.fr">antonywouenzell@yahoo.fr</a><span>2 rue du Gros Chillou<br>37420 Avoine</span></div></div><div><h3 class="text-white font-semibold">Informations</h3><div class="mt-3 grid gap-2 text-sm"><a href="mentions-legales.html">Mentions légales</a><span>SIRET 511 157 307 00022</span></div></div></div><div class="border-t border-white/10 py-5 text-center text-xs">© <span id="year"></span> AWZ-Rénovation. Tous droits réservés. <span class="mx-2 text-white/30">•</span> Site réalisé par <a href="https://seignemorte.com" target="_blank" rel="noopener noreferrer" class="text-white/90 hover:text-white underline underline-offset-4 decoration-white/30 hover:decoration-white/70 transition">Seignemorte.com</a></div></footer>
 <script>
 const projects=[
-{ cat:'interieur',label:'Rénovation intérieure',title:'Rénovation complète d’un intérieur',
+{
+ cat:'interieur',label:'Rénovation intérieure',title:'Rénovation complète d’un intérieur',
  mode:'compare',
  before:'assets/images/realisations/renovation-interieure-complete/avant.webp',
  after:'assets/images/realisations/renovation-interieure-complete/apres.webp',
- gallery:['assets/images/realisations/renovation-interieure-complete/galerie-1.webp', 'assets/images/realisations/renovation-interieure-complete/galerie-2.webp', 'assets/images/realisations/renovation-interieure-complete/galerie-3.webp', 'assets/images/realisations/renovation-interieure-complete/galerie-4.webp', 'assets/images/realisations/renovation-interieure-complete/galerie-5.webp', 'assets/images/realisations/renovation-interieure-complete/galerie-6.webp', 'assets/images/realisations/renovation-interieure-complete/galerie-7.webp'],
- copy:'Rénovation complète d’un espace intérieur avec reprise des volumes, des surfaces, des sols et préparation des finitions.',
- points:[{icon:'bi-house-gear',text:'Rénovation intérieure'},{icon:'bi-grid-3x3-gap',text:'Sols & finitions'}]
+ gallery:['assets/images/realisations/renovation-interieure-complete/galerie-1.webp','assets/images/realisations/renovation-interieure-complete/galerie-2.webp','assets/images/realisations/renovation-interieure-complete/galerie-3.webp','assets/images/realisations/renovation-interieure-complete/galerie-4.webp','assets/images/realisations/renovation-interieure-complete/galerie-5.webp','assets/images/realisations/renovation-interieure-complete/galerie-6.webp','assets/images/realisations/renovation-interieure-complete/galerie-7.webp'],
+ copy:'Transformation complète d’un intérieur ancien : reprise des volumes et des surfaces, rénovation des sols et mise en valeur des éléments existants.',
+ points:[{icon:'bi-house-gear',text:'Rénovation complète'},{icon:'bi-grid-3x3-gap',text:'Sols & surfaces'},{icon:'bi-stars',text:'Finitions soignées'}]
 },
 {
  cat:'pierre',label:'Pierre & Tuffeau',title:'Restauration d’une façade en pierre',
  mode:'compare',
- before:'assets/images/realisations/facade-pierre-2024/20240425_091841.webp',
- after:'assets/images/realisations/facade-pierre-2024/20240613_122728.webp',
- gallery:[
-  'assets/images/realisations/facade-pierre-2024/20240528_091104.webp',
-  'assets/images/realisations/facade-pierre-2024/20240613_122742.webp',
-  'assets/images/realisations/facade-pierre-2024/20240613_122825.webp'
- ],
- copy:'Reprise d’une façade ancienne en pierre : préparation du support, travail de la maçonnerie et finitions dans le respect du bâti existant.',
- points:[{icon:'bi-bricks',text:'Travail de la pierre existante'},{icon:'bi-hammer',text:'Reprises de maçonnerie'},{icon:'bi-house-check',text:'Finitions du bâti ancien'}]
+ before:'assets/images/realisations/facade-pierre-2024/avant.webp',
+ after:'assets/images/realisations/facade-pierre-2024/apres.webp',
+ gallery:['assets/images/realisations/facade-pierre-2024/20240425_091841.webp','assets/images/realisations/facade-pierre-2024/20240613_122742.webp','assets/images/realisations/facade-pierre-2024/20240613_122825.webp'],
+ copy:'Restauration d’une façade ancienne en pierre avec reprise des maçonneries et des joints afin de retrouver un ensemble plus homogène tout en conservant le caractère du bâti.',
+ points:[{icon:'bi-bricks',text:'Pierre existante conservée'},{icon:'bi-hammer',text:'Reprises de maçonnerie'},{icon:'bi-stars',text:'Joints & finitions'}]
 },
 {
  cat:'interieur',label:'Rénovation intérieure',title:'Rénovation et finitions intérieures',
  mode:'compare',
  before:'assets/images/realisations/renovation-interieure-2022/IMG-20220203-WA0007.webp',
  after:'assets/images/realisations/renovation-interieure-2022/IMG-20220203-WA0001.webp',
- gallery:['assets/images/realisations/renovation-interieure-2022/IMG-20220203-WA0010.webp'],
- copy:'Travaux intérieurs avec préparation des supports, peinture et finitions pour remettre la pièce proprement en état.',
- points:[{icon:'bi-tools',text:'Préparation des supports'},{icon:'bi-paint-bucket',text:'Peinture et finitions'},{icon:'bi-stars',text:'Remise en état complète'}]
+ gallery:[],
+ copy:'Remise en état d’un intérieur avec préparation des supports et travail des finitions pour obtenir un espace plus propre, lumineux et homogène.',
+ points:[{icon:'bi-tools',text:'Préparation des supports'},{icon:'bi-paint-bucket',text:'Peinture & finitions'},{icon:'bi-stars',text:'Remise en état'}]
 },
 {
- cat:'facades',label:'Façades',title:'Reprise d’une façade extérieure',
+ cat:'facades',label:'Ravalement & façade',title:'Reprise d’une façade extérieure',
  mode:'compare',
- before:'assets/images/realisations/facade-2024/IMG-20241218-WA0006.webp',
- after:'assets/images/realisations/facade-2024/IMG-20241218-WA0002.webp',
+ before:'assets/images/realisations/facade-2024/avant.webp',
+ after:'assets/images/realisations/facade-2024/apres.webp',
  gallery:[],
- copy:'Reprise d’un extérieur avec traitement des supports et finition de façade.',
+ copy:'Reprise d’une façade extérieure avec préparation des supports et finition pour redonner une lecture plus nette et uniforme au bâtiment.',
  points:[{icon:'bi-house-gear',text:'Préparation du support'},{icon:'bi-tools',text:'Reprises extérieures'},{icon:'bi-check2-circle',text:'Finition de façade'}]
 },
 {
- cat:'pierre',label:'Pierre & Tuffeau',title:'Chantier de façade en pierre',
- mode:'gallery',
- images:[
-  'assets/images/realisations/facade-pierre-2025/20250114_103118.webp',
-  'assets/images/realisations/facade-pierre-2025/20250117_093103.webp',
-  'assets/images/realisations/facade-pierre-2025/20250121_120017.webp',
-  'assets/images/realisations/facade-pierre-2025/20250122_141145.webp'
- ],
- copy:'Différentes étapes d’un chantier de façade sur bâti ancien, de la mise en place du chantier aux reprises de maçonnerie.',
- points:[{icon:'bi-bricks',text:'Façade en pierre'},{icon:'bi-cone-striped',text:'Travail en plusieurs étapes'},{icon:'bi-hammer',text:'Reprises et finitions'}]
+ cat:'pierre',label:'Pierre & Tuffeau',title:'Rénovation d’une façade en pierre',
+ mode:'compare',
+ before:'assets/images/realisations/facade-pierre-2025/avant.webp',
+ after:'assets/images/realisations/facade-pierre-2025/apres.webp',
+ gallery:[],
+ copy:'Intervention sur une façade en pierre ancienne avec nettoyage, reprises localisées et restauration des joints pour préserver l’aspect authentique du mur.',
+ points:[{icon:'bi-bricks',text:'Façade en pierre'},{icon:'bi-tools',text:'Reprises localisées'},{icon:'bi-stars',text:'Joints & finitions'}]
+},
+{
+ cat:'pierre',label:'Pierre & Tuffeau',title:'Reprise d’un mur en pierre',
+ mode:'compare',
+ before:'assets/images/realisations/facade-pierre-2026/avant.webp',
+ after:'assets/images/realisations/facade-pierre-2026/apres.webp',
+ gallery:[],
+ copy:'Reprise progressive d’une maçonnerie ancienne en pierre afin d’assainir l’aspect du mur et de remettre en valeur les matériaux d’origine.',
+ points:[{icon:'bi-bricks',text:'Maçonnerie ancienne'},{icon:'bi-hammer',text:'Reprise de la pierre'},{icon:'bi-check2-circle',text:'Finition du mur'}]
 },
 {
  cat:'maconnerie',label:'Maçonnerie & gros œuvre',title:'Intervention sur bâti ancien',
- mode:'gallery',
- images:[
-  'assets/images/realisations/bati-ancien-2025/20250813_114012.webp',
-  'assets/images/realisations/bati-ancien-2025/20250813_180524.webp'
- ],
- copy:'Intervention de maçonnerie sur une construction ancienne avec conservation du caractère du bâtiment.',
+ mode:'compare',
+ before:'assets/images/realisations/bati-ancien-2025/avant.webp',
+ after:'assets/images/realisations/bati-ancien-2025/apres.webp',
+ gallery:[],
+ copy:'Intervention de maçonnerie sur un bâtiment ancien avec reprise ciblée de l’existant et conservation de son caractère architectural.',
  points:[{icon:'bi-bricks',text:'Maçonnerie traditionnelle'},{icon:'bi-house',text:'Bâti ancien'},{icon:'bi-tools',text:'Reprises localisées'}]
 },
-{ cat:'interieur',label:'Rénovation intérieure',title:'Rénovation de pièces intérieures',
+{
+ cat:'interieur',label:'Rénovation intérieure',title:'Rénovation de pièces intérieures',
  mode:'compare',
  before:'assets/images/realisations/interieur-2025/20250922_164733.webp',
  after:'assets/images/realisations/interieur-2025/apres-3.webp',
- gallery:["assets/images/realisations/interieur-2025/apres-1.webp", "assets/images/realisations/interieur-2025/apres-2.webp", "assets/images/realisations/interieur-2025/apres-4.webp"],
- copy:'Travaux de rénovation intérieure sur plusieurs pièces avec reprise des surfaces et préparation des finitions.',
- points:[{icon:'bi-house-gear',text:'Rénovation intérieure'},{icon:'bi-grid-3x3-gap',text:'Reprise des surfaces'},{icon:'bi-stars',text:'Préparation des finitions'}]
+ gallery:['assets/images/realisations/interieur-2025/apres-1.webp','assets/images/realisations/interieur-2025/apres-2.webp','assets/images/realisations/interieur-2025/apres-4.webp'],
+ copy:'Rénovation de plusieurs espaces intérieurs avec reprise des surfaces et travail des finitions pour harmoniser l’ensemble.',
+ points:[{icon:'bi-house-gear',text:'Rénovation intérieure'},{icon:'bi-grid-3x3-gap',text:'Reprise des surfaces'},{icon:'bi-stars',text:'Finitions'}]
 },
 {
- cat:'interieur',label:'Rénovation intérieure',title:'Aménagement et rénovation intérieure',
+ cat:'terrasses',label:'Dalles & Terrasses',title:'Aménagement complet d’une terrasse',
  mode:'gallery',
- images:[
-  'assets/images/realisations/interieur-2026/20260102_120331.webp',
-  'assets/images/realisations/interieur-2026/20260121_165656.webp',
-  'assets/images/realisations/interieur-2026/20260124_111749.webp',
-  'assets/images/realisations/interieur-2026/20260124_111753.webp'
- ],
- copy:'Une série de travaux intérieurs mêlant remise en état, aménagement et finitions.',
- points:[{icon:'bi-tools',text:'Travaux intérieurs'},{icon:'bi-house-gear',text:'Aménagement'},{icon:'bi-check2-circle',text:'Finitions'}]
+ images:['assets/images/realisations/interieur-2026/20260121_165656.webp'],
+ copy:'Aménagement d’une terrasse extérieure pour créer un véritable espace de vie, avec surface minérale, pergola et zone de détente ouverte sur l’extérieur.',
+ points:[{icon:'bi-grid-3x3-gap',text:'Aménagement de terrasse'},{icon:'bi-house-gear',text:'Espace extérieur'},{icon:'bi-stars',text:'Finitions'}]
 },
 {
- cat:'finitions',label:'Pierre de taille & Finitions',title:'Finitions et reprises intérieures',
- mode:'gallery',
- images:[
-  'assets/images/realisations/finitions-2026/20260424_132324.webp',
-  'assets/images/realisations/finitions-2026/20260424_132357.webp',
-  'assets/images/realisations/finitions-2026/Screenshot_20260419_123301_Snapchat.webp'
- ],
- copy:'Travaux de finition et reprises soignées dans un intérieur existant.',
- points:[{icon:'bi-hammer',text:'Reprises ponctuelles'},{icon:'bi-tools',text:'Finitions intérieures'},{icon:'bi-stars',text:'Soin des détails'}]
+ cat:'finitions',label:'Pierre de taille & Finitions',title:'Rénovation d’une pièce de caractère',
+ mode:'compare',
+ before:'assets/images/realisations/finitions-2026/avant.webp',
+ after:'assets/images/realisations/finitions-2026/apres.webp',
+ gallery:[],
+ copy:'Transformation d’une pièce ancienne autour de sa cheminée : remise en valeur de la pierre, reprise des surfaces, plafond entre poutres et nouveau sol pour conserver le cachet du lieu.',
+ points:[{icon:'bi-bricks',text:'Pierre & cheminée'},{icon:'bi-tools',text:'Reprise des surfaces'},{icon:'bi-grid-3x3-gap',text:'Sol & finitions'}]
 },
 {
- cat:'facades',label:'Façades',title:'Travaux extérieurs sur maison ancienne',
+ cat:'facades',label:'Ravalement & façade',title:'Travaux extérieurs sur maison ancienne',
  mode:'gallery',
- images:[
-  'assets/images/realisations/pierre-exterieur-2021/20210629_095104.webp',
-  'assets/images/realisations/pierre-exterieur-2021/20210629_150710.webp'
- ],
- copy:'Travaux extérieurs sur une maison ancienne avec intervention sur les murs et les façades.',
+ images:['assets/images/realisations/pierre-exterieur-2021/20210629_095104.webp','assets/images/realisations/pierre-exterieur-2021/20210629_150710.webp'],
+ copy:'Travaux extérieurs sur une maison ancienne avec intervention sur les murs et les maçonneries existantes.',
  points:[{icon:'bi-house',text:'Maison ancienne'},{icon:'bi-bricks',text:'Travail des murs'},{icon:'bi-check2-circle',text:'Reprises extérieures'}]
 }
 ];
