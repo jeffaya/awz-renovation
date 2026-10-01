@@ -1,3 +1,47 @@
+# V33
+
+Qualité renforcée des visuels de services et navigation vers les réalisations.
+
+- 6 visuels de services conservés mais remasterisés en 2400 px de large.
+- Rééchantillonnage Lanczos + accentuation légère.
+- WebP qualité 96 pour les images visibles en premier sur la home.
+- Ajout du bouton « Voir toutes les réalisations » dans la section « Nos réalisations » de la home.
+- Hero et réalisations V32 inchangés.
+
+# V32
+
+Optimisation WebP haute qualité des réalisations AWZ.
+
+- 27 photos réelles converties en WebP.
+- Qualité 88, méthode d'encodage maximale.
+- 2200 px maximum sur le plus grand côté.
+- Orientation EXIF corrigée.
+- Sources JPG/PNG retirées du package web.
+- Aucun changement visuel ou de contenu volontaire par rapport à V31.
+
+# V31
+
+Remplacement des réalisations fictives par de vraies photos AWZ.
+
+- Hero et visuels génériques inchangés.
+- 9 groupes de réalisations réelles issus du dossier Drive.
+- Comparateur Avant / Après uniquement sur les séries où la progression est exploitable.
+- Les autres séries sont présentées en galerie, sans inventer un avant/après.
+- Photos conservées en JPG d'origine pour cette version.
+- Classement physique par chantier dans `assets/images/realisations/`.
+- Une prochaine passe pourra convertir les images sélectionnées en WebP et générer des tailles responsives.
+
+# V30
+
+Refactor technique des images uniquement — aucun changement visuel volontaire.
+
+- `brand/` : identité et partage social.
+- `site/` : hero, artisan et zones.
+- `services/<service>/cover.webp` : visuels de services.
+- `realisations/<chantier>/avant.webp|apres.webp` : réalisations.
+- Toutes les références ont été mises à jour.
+- Structure prête pour les nouvelles photos en V31.
+
 # V29
 
 - Homepage nettoyée.
@@ -27,7 +71,7 @@ Modifier simplement `config/site.json`, puis pousser le commit. Netlify relance 
 - Ajout d'une image sociale premium AWZ pour les partages WhatsApp, Facebook, LinkedIn, X et autres plateformes.
 - Image Open Graph 1200×630 en JPEG, plus une version WebP.
 - Balises og:image, og:image:width/height/type/alt et twitter:image ajoutées à toutes les pages.
-- URL sociale absolue : https://www.awz-renovation.fr/assets/images/awz-social-share.jpg
+- URL sociale absolue : https://www.awz-renovation.fr/assets/images/brand/social-share.jpg
 
 # V26
 - Remplacement de `zone-intervention-awz.webp` par la nouvelle carte validée.

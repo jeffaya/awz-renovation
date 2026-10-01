@@ -2,7 +2,7 @@
   "brand": {
     "name": "AWZ-Rénovation",
     "displayName": "AWZ Rénovation",
-    "logo": "assets/images/logo-awz.svg"
+    "logo": "assets/images/brand/logo-awz.svg"
   },
   "site": {
     "baseUrl": "https://awz-renovation.netlify.app",
@@ -23,7 +23,7 @@
     "siret": "511 157 307 00022"
   },
   "social": {
-    "shareImage": "assets/images/awz-social-share.jpg",
+    "shareImage": "assets/images/brand/social-share.jpg",
     "title": "AWZ-Rénovation",
     "description": "Maçonnerie, rénovation, pierre & tuffeau. Un interlocuteur de A à Z."
   }
