@@ -369,3 +369,8 @@ Modifier uniquement le partial correspondant dans `templates/partials/`.
 
 ### Version du package
 Le package repart en `1.0.0`. Les numéros Vxx désignent les livraisons ZIP et ne sont plus confondus avec la version npm.
+
+### V64 — validation des tokens
+Correction du rendu des partials : les tokens `{{ARTISAN_*}}` présents dans le header/footer/CTA
+sont maintenant résolus avant leur injection dans les pages. Le build effectue ensuite un contrôle
+global et échoue si le moindre token `{{...}}` reste dans les fichiers générés.
