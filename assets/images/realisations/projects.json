@@ -1,0 +1,134 @@
+[
+  {
+    "date": "2026-06-24",
+    "category": "pierre",
+    "label": "Pierre & Tuffeau",
+    "title": "Reprise d’un mur en pierre",
+    "description": "Reprise progressive d’une maçonnerie ancienne en pierre afin d’assainir l’aspect du mur et de remettre en valeur les matériaux d’origine.",
+    "points": [
+      "Maçonnerie ancienne",
+      "Reprise de la pierre",
+      "Finition du mur"
+    ]
+  },
+  {
+    "date": "2026-04-24",
+    "category": "finitions",
+    "label": "Pierre de taille & Finitions",
+    "title": "Rénovation d’une pièce de caractère",
+    "description": "Transformation d’une pièce ancienne autour de sa cheminée : remise en valeur de la pierre, reprise des surfaces, plafond entre poutres et nouveau sol pour conserver le cachet du lieu.",
+    "points": [
+      "Pierre & cheminée",
+      "Reprise des surfaces",
+      "Sol & finitions"
+    ]
+  },
+  {
+    "date": "2026-01-24",
+    "category": "interieur",
+    "label": "Rénovation intérieure",
+    "title": "Rénovation complète d’un intérieur",
+    "description": "Transformation complète d’un intérieur ancien : reprise des volumes et des surfaces, rénovation des sols et mise en valeur des éléments existants.",
+    "points": [
+      "Rénovation complète",
+      "Sols & surfaces",
+      "Finitions soignées"
+    ]
+  },
+  {
+    "date": "2026-01-21",
+    "category": "terrasses",
+    "label": "Dalles & Terrasses",
+    "title": "Aménagement complet d’une terrasse",
+    "description": "Aménagement d’une terrasse extérieure pour créer un véritable espace de vie, avec surface minérale, pergola et zone de détente ouverte sur l’extérieur.",
+    "points": [
+      "Aménagement de terrasse",
+      "Espace extérieur",
+      "Finitions"
+    ]
+  },
+  {
+    "date": "2025-09-22",
+    "category": "interieur",
+    "label": "Rénovation intérieure",
+    "title": "Rénovation de pièces intérieures",
+    "description": "Rénovation de plusieurs espaces intérieurs avec reprise des surfaces et travail des finitions pour harmoniser l’ensemble.",
+    "points": [
+      "Rénovation intérieure",
+      "Reprise des surfaces",
+      "Finitions"
+    ]
+  },
+  {
+    "date": "2025-08-13",
+    "category": "facades",
+    "label": "Ravalement & façade",
+    "title": "Ravalement d’une façade en pierre",
+    "description": "Ravalement d’une façade en pierre avec nettoyage et reprise des surfaces pour retrouver une façade plus propre, homogène et mettre en valeur la pierre existante.",
+    "points": [
+      "Nettoyage de la façade",
+      "Reprise des surfaces",
+      "Mise en valeur de la pierre"
+    ]
+  },
+  {
+    "date": "2025-06-10",
+    "category": "pierre",
+    "label": "Pierre & Tuffeau",
+    "title": "Rénovation d’une façade en pierre",
+    "description": "Intervention sur une façade en pierre ancienne avec nettoyage, reprises localisées et restauration des joints pour préserver l’aspect authentique du mur.",
+    "points": [
+      "Façade en pierre",
+      "Reprises localisées",
+      "Joints & finitions"
+    ]
+  },
+  {
+    "date": "2024-12-18",
+    "category": "facades",
+    "label": "Ravalement & façade",
+    "title": "Reprise d’une façade extérieure",
+    "description": "Reprise d’une façade extérieure avec préparation des supports et finition pour redonner une lecture plus nette et uniforme au bâtiment.",
+    "points": [
+      "Préparation du support",
+      "Reprises extérieures",
+      "Finition de façade"
+    ]
+  },
+  {
+    "date": "2024-06-13",
+    "category": "pierre",
+    "label": "Pierre & Tuffeau",
+    "title": "Restauration d’une façade en pierre",
+    "description": "Restauration d’une façade ancienne en pierre avec reprise des maçonneries et des joints afin de retrouver un ensemble plus homogène tout en conservant le caractère du bâti.",
+    "points": [
+      "Pierre existante conservée",
+      "Reprises de maçonnerie",
+      "Joints & finitions"
+    ]
+  },
+  {
+    "date": "2022-02-03",
+    "category": "interieur",
+    "label": "Rénovation intérieure",
+    "title": "Rénovation et finitions intérieures",
+    "description": "Remise en état d’un intérieur avec préparation des supports et travail des finitions pour obtenir un espace plus propre, lumineux et homogène.",
+    "points": [
+      "Préparation des supports",
+      "Peinture & finitions",
+      "Remise en état"
+    ]
+  },
+  {
+    "date": "2021-06-29",
+    "category": "facades",
+    "label": "Ravalement & façade",
+    "title": "Travaux extérieurs sur maison ancienne",
+    "description": "Travaux extérieurs sur une maison ancienne avec intervention sur les murs et les maçonneries existantes.",
+    "points": [
+      "Maison ancienne",
+      "Travail des murs",
+      "Reprises extérieures"
+    ]
+  }
+]
