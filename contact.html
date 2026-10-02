@@ -26,13 +26,14 @@
     <div class="max-w-3xl">
       <p class="text-sm font-semibold uppercase tracking-[.2em] text-[#8a7655] mb-4">Contact</p>
       <h1 class="text-4xl sm:text-5xl font-bold text-[#17372d] leading-tight">Parlons de votre projet</h1>
-      <p class="mt-5 text-lg text-stone-600 leading-relaxed">Retrouvez ici toutes les coordonnées d’AWZ-Rénovation pour échanger directement avec votre artisan.</p>
+      <p class="mt-5 text-lg text-stone-600 leading-relaxed">Toutes les coordonnées utiles pour contacter directement votre artisan.</p>
     </div>
 
     <div class="mt-12 grid lg:grid-cols-[1.15fr_.85fr] gap-6">
       <section class="bg-white rounded-2xl border border-stone-200 shadow-sm p-7 sm:p-9">
-        <h2 class="text-2xl font-bold text-[#17372d]">{{ARTISAN_NAME}}</h2>
-        <p class="mt-2 text-stone-600">Artisan en rénovation, maçonnerie, pierre et tuffeau.</p>
+        <p class="text-xs font-bold uppercase tracking-[.16em] text-[#8a7655]">Votre artisan</p>
+        <h2 class="mt-2 text-2xl font-bold text-[#17372d]">{{ARTISAN_FULL_NAME}}</h2>
+        <p class="mt-1 text-stone-600">{{ARTISAN_NAME}} · Rénovation, maçonnerie, pierre et tuffeau</p>
 
         <div class="mt-8 grid sm:grid-cols-2 gap-5">
           <div class="rounded-xl bg-[#f7f4ed] p-5">
@@ -56,13 +57,20 @@
       </section>
 
       <aside class="bg-[#17372d] text-white rounded-2xl p-7 sm:p-9">
-        <p class="text-sm font-semibold uppercase tracking-[.18em] text-[#d8c49d]">Informations</p>
-        <dl class="mt-7 space-y-6">
-          <div><dt class="text-sm text-white/65">Entreprise</dt><dd class="mt-1 font-semibold">{{ARTISAN_NAME}}</dd></div>
-          <div><dt class="text-sm text-white/65">SIRET</dt><dd class="mt-1 font-semibold">{{ARTISAN_SIRET}}</dd></div>
-          <div><dt class="text-sm text-white/65">Adresse</dt><dd class="mt-1 font-semibold">{{ARTISAN_FULL_ADDRESS}}</dd></div>
-          <div><dt class="text-sm text-white/65">Zone d’intervention</dt><dd class="mt-1 leading-relaxed">Avoine, Chinon, Saumur, Tours et communes environnantes.</dd></div>
-        </dl>
+        <p class="text-sm font-semibold uppercase tracking-[.18em] text-[#d8c49d]">Zone d’intervention</p>
+        <h2 class="mt-3 text-2xl font-bold">Un artisan local, proche de vos travaux</h2>
+        <p class="mt-4 text-white/75 leading-relaxed">AWZ-Rénovation intervient autour d’Avoine et dans les principales communes du secteur.</p>
+        <div class="mt-7 flex flex-wrap gap-2">
+          <span class="rounded-full border border-white/20 px-3 py-2 text-sm">Avoine</span>
+          <span class="rounded-full border border-white/20 px-3 py-2 text-sm">Chinon</span>
+          <span class="rounded-full border border-white/20 px-3 py-2 text-sm">Saumur</span>
+          <span class="rounded-full border border-white/20 px-3 py-2 text-sm">Tours</span>
+          <span class="rounded-full border border-white/20 px-3 py-2 text-sm">Langeais</span>
+          <span class="rounded-full border border-white/20 px-3 py-2 text-sm">Azay-le-Rideau</span>
+          <span class="rounded-full border border-white/20 px-3 py-2 text-sm">Richelieu</span>
+          <span class="rounded-full border border-white/20 px-3 py-2 text-sm">Loudun</span>
+        </div>
+        <a href="/zones-intervention.html" class="mt-8 inline-flex items-center font-semibold text-[#e5d3ad] hover:underline">Voir toutes les zones d’intervention →</a>
       </aside>
     </div>
   </section>

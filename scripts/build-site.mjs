@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 // Artisan/business data: single source of truth.
 const artisan = JSON.parse(readFileSync("assets/config/artisan.json", "utf8"));
-for (const key of ["name","phone","phoneHref","email","address","postalCode","city","siret","website"]) {
+for (const key of ["name","phone","phoneHref","email","address","postalCode","city","siret","website","artisanFirstName","artisanLastName","artisanFullName"]) {
   if (!artisan[key]) throw new Error(`artisan.json: champ ${key} manquant`);
 }
 function applyArtisanConfig(text) {
@@ -19,6 +19,9 @@ function applyArtisanConfig(text) {
     "{{ARTISAN_FULL_ADDRESS}}": fullAddress,
     "{{ARTISAN_SIRET}}": artisan.siret,
     "{{ARTISAN_WEBSITE}}": artisan.website,
+    "{{ARTISAN_FIRST_NAME}}": artisan.artisanFirstName,
+    "{{ARTISAN_LAST_NAME}}": artisan.artisanLastName,
+    "{{ARTISAN_FULL_NAME}}": artisan.artisanFullName,
     "{{ARTISAN_MAILTO}}": `mailto:${artisan.email}?subject=${encodeURIComponent("Demande de devis – "+artisan.name)}`
   };
   for (const [token,value] of Object.entries(values)) text=text.split(token).join(value);

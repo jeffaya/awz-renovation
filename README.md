@@ -333,3 +333,6 @@ adresse, SIRET et zone d'intervention.
 
 Cette solution est entièrement statique et fonctionne de la même manière sur Cloudflare, OVH,
 Netlify ou tout autre hébergement de fichiers statiques, sans clé API ni service d'e-mail.
+
+### V60 — page Contact
+La page Contact affiche l’identité de l’artisan (`artisanFullName`) une seule fois avec ses coordonnées. Le panneau droit est désormais réservé aux zones d’intervention afin d’éviter toute duplication d’informations.
