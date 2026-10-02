@@ -374,3 +374,22 @@ Le package repart en `1.0.0`. Les numéros Vxx désignent les livraisons ZIP et 
 Correction du rendu des partials : les tokens `{{ARTISAN_*}}` présents dans le header/footer/CTA
 sont maintenant résolus avant leur injection dans les pages. Le build effectue ensuite un contrôle
 global et échoue si le moindre token `{{...}}` reste dans les fichiers générés.
+
+
+## V65 — URL du site centralisée
+
+`assets/config/site.json` est la source unique des URLs d'environnement.
+
+```json
+{
+  "siteUrl": "https://awz-renovation.jf-seignemorte.workers.dev",
+  "productionUrl": "https://www.awz-renovation.fr"
+}
+```
+
+Toutes les URLs absolues du build (canonical, Open Graph, JSON-LD, pages locales, sitemap et
+robots.txt) utilisent `siteUrl`.
+
+Pour la mise en production, remplacer uniquement `siteUrl` par la valeur de `productionUrl`,
+puis lancer `npm run build`. `artisan.json` ne contient plus l'URL d'hébergement : il reste
+strictement dédié aux informations de l'artisan.
