@@ -336,3 +336,36 @@ Netlify ou tout autre hébergement de fichiers statiques, sans clé API ni servi
 
 ### V60 — page Contact
 La page Contact affiche l’identité de l’artisan (`artisanFullName`) une seule fois avec ses coordonnées. Le panneau droit est désormais réservé aux zones d’intervention afin d’éviter toute duplication d’informations.
+
+### V62 — carte des zones sans recadrage
+La carte `assets/images/site/zones/intervention.webp` reste dans son fichier original, sans crop.
+Son conteneur d'affichage est carré (1:1) et l'image utilise `object-contain` : 100 % de la carte
+reste visible. L'espace restant est absorbé par des marges discrètes dans le cadre.
+
+
+## V63 — refactoring structurel
+
+Cette version ne change pas le design. Elle réduit les duplications et rend le site piloté par configuration.
+
+- `assets/config/artisan.json` : source unique des informations de l'entreprise et de l'artisan.
+- `assets/config/cities.json` : source unique des pages locales.
+- `assets/images/realisations/projects.json` : source unique des réalisations.
+- `templates/partials/` : header, footer et CTA mobile partagés.
+- `templates/pages/city.html` : un seul template pour toutes les pages locales.
+- `scripts/config.mjs` : configuration et remplacement des tokens.
+- `scripts/projects.mjs` : validation/génération des réalisations.
+- `scripts/pages.mjs` : rendu des partials et des pages villes.
+- `scripts/seo.mjs` : HTML statique de secours des réalisations pour le crawl.
+- `scripts/build.mjs` : orchestration uniquement.
+
+Les anciennes dépendances Netlify/formulaire ont été supprimées, ainsi que le code JS d'upload de photos et la page `merci.html`.
+Les URL SEO absolues utilisent désormais `artisan.website`; le sitemap et `robots.txt` sont générés automatiquement dans `dist/`.
+
+### Ajouter une ville
+Ajouter une entrée dans `assets/config/cities.json`, puis lancer `npm run build`. Aucun nouveau fichier HTML source n'est nécessaire.
+
+### Modifier le menu ou le footer
+Modifier uniquement le partial correspondant dans `templates/partials/`.
+
+### Version du package
+Le package repart en `1.0.0`. Les numéros Vxx désignent les livraisons ZIP et ne sont plus confondus avec la version npm.
