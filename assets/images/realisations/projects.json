@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10-13",
+    "category": "facades",
+    "label": "Ravalement & façade",
+    "title": "Ravalement de façade et restauration des moulures et corniches",
+    "description": "Travaux de ravalement sur la façade d’une demeure ancienne, avec réparation des moulures et corniches en pierre et reprise des éléments décoratifs pour préserver le caractère architectural du bâtiment.",
+    "points": [
+      "Ravalement de façade",
+      "Réparation des moulures",
+      "Restauration des corniches"
+    ]
+  },
+  {
     "date": "2026-06-24",
     "category": "pierre",
     "label": "Pierre & Tuffeau",
