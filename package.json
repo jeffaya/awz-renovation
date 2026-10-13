@@ -3,6 +3,24 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "playwright test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1",
+    "bootstrap-icons": "1.11.3",
+    "cssnano": "7.1.9",
+    "postcss": "8.5.30",
+    "prettier": "3.9.10",
+    "tailwindcss": "3.4.17"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
   }
 }
