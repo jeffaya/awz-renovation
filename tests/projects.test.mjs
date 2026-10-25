@@ -83,3 +83,26 @@ test("unresolved tokens fail explicitly", () => {
   );
   assert.doesNotThrow(() => assertResolved(replaceTokens("{{ARTISAN_NAME}}"), "test.html"));
 });
+
+test("verified project details survive rendering and malformed details are rejected", (t) => {
+  const meta = {
+    ...metadata,
+    city: "Avoine",
+    duration: "3 jours",
+    surface: "12 m²",
+    materials: ["Pierre"],
+    context: "Avant travaux",
+    workDetails: ["Reprise des joints"],
+  };
+  const [project] = buildProjects(fixture(t, [meta]));
+  assert.equal(project.file, "realisation-2026-01-21.html");
+  assert.equal(project.city, "Avoine");
+  assert.deepEqual(project.materials, ["Pierre"]);
+  for (const invalid of [
+    { city: "" },
+    { duration: 3 },
+    { materials: "Pierre" },
+    { workDetails: [null] },
+  ])
+    assert.throws(() => buildProjects(fixture(t, [{ ...metadata, ...invalid }])));
+});

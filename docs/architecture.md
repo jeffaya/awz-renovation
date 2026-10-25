@@ -20,8 +20,9 @@ Les liens de devis ouvrent le logiciel e-mail du visiteur avec `mailto:`. Les nu
 | `zones-intervention.html`                  | Présentation des zones, carte illustrée et liens vers les villes                      |
 | `mentions-legales.html`                    | Mentions légales et crédits photographiques                                           |
 | `assets/config/artisan.json`               | Coordonnées et identité utilisées par les tokens et le JSON-LD                        |
-| `assets/config/site.json`                  | `siteUrl` et `productionUrl`                                                          |
+| `assets/config/site.json`                  | `siteUrl`, origine par défaut des URLs SEO                                            |
 | `assets/config/cities.json`                | Contenu et noms de fichiers des pages locales                                         |
+| `assets/config/services.json`, `faq.json`  | Prestations détaillées et questions/réponses visibles                                 |
 | `assets/images/realisations/projects.json` | Liste éditoriale des chantiers                                                        |
 | `assets/images/realisations/YYYY-MM-DD/`   | Photos d'un chantier                                                                  |
 | `assets/images/brand/`                     | Logo, favicon et images de partage social                                             |
@@ -30,6 +31,7 @@ Les liens de devis ouvrent le logiciel e-mail du visiteur avec `mailto:`. Les nu
 | `assets/css/styles.css`                    | CSS source des composants ; n'inclut pas les utilitaires générés                      |
 | `assets/js/`                               | Modules navigateur maintenus à la main                                                |
 | `templates/pages/city.html`                | Template unique des pages locales                                                     |
+| `templates/pages/detail.html`              | Template des prestations, fiches chantier et FAQ                                      |
 | `templates/partials/`                      | Fragments partagés, détaillés ci-dessous                                              |
 | `scripts/`                                 | Build, validations, rendu et serveur local                                            |
 | `tests/`                                   | Tests unitaires et navigateur                                                         |
@@ -58,16 +60,18 @@ La liste des partials est explicite dans `scripts/pages.mjs` : créer un nouveau
 
 Exécuter les commandes depuis la racine : les chemins des scripts sont relatifs au répertoire courant.
 
-| Étape                     | Module                        | Travail effectué                                                                                            |
-| ------------------------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Configuration             | `scripts/config.mjs`          | Lit les trois JSON de configuration, valide l'identité, l'URL et les villes ; prépare tokens et `mailto`    |
-| Portfolio                 | `scripts/projects.mjs`        | `buildProjects()` lit les métadonnées, valide les dates/catégories/photos et trie les projets               |
-| Fragments de réalisations | `scripts/render-projects.mjs` | Génère le HTML de l'accueil, du portfolio et des trois suggestions locales                                  |
-| Assemblage                | `scripts/pages.mjs`           | Résout les partials et construit les pages locales avec le template commun                                  |
-| Contrôle du HTML          | `scripts/html.mjs`            | `assertResolved()` refuse les tokens majuscules non remplacés                                               |
-| Écriture                  | `scripts/build.mjs`           | Découvre les `.html` à la racine, refuse les collisions avec les villes, recrée `dist/` et copie les assets |
-| Styles                    | `scripts/styles.mjs`          | Compile Tailwind depuis le HTML final, sélectionne les icônes et minifie les deux feuilles CSS              |
-| Indexation                | `scripts/build.mjs`           | Écrit `sitemap.xml` et `robots.txt` depuis les pages et `siteUrl`                                           |
+| Étape                     | Module                                         | Travail effectué                                                                                                 |
+| ------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Configuration             | `scripts/config.mjs`                           | Lit les trois JSON de configuration, valide l'identité, l'URL et les villes ; prépare tokens et `mailto`         |
+| Portfolio                 | `scripts/projects.mjs`                         | `buildProjects()` lit les métadonnées, valide les dates/catégories/photos et trie les projets                    |
+| Fragments de réalisations | `scripts/render-projects.mjs`                  | Génère le HTML de l'accueil, du portfolio et des trois suggestions locales                                       |
+| Assemblage                | `scripts/pages.mjs`                            | Résout les partials et construit les pages locales avec le template commun                                       |
+| Pages détaillées          | `scripts/content-pages.mjs`                    | Valide services/FAQ et rend les prestations, fiches chantier et FAQ                                              |
+| SEO                       | `scripts/seo.mjs`, `scripts/site-settings.mjs` | Origine, indexation, fils d’Ariane, données structurées et sitemap avec images                                   |
+| Contrôle du HTML          | `scripts/html.mjs`                             | `assertResolved()` refuse les tokens majuscules non remplacés                                                    |
+| Écriture                  | `scripts/build.mjs`                            | Découvre les `.html` à la racine, refuse toute collision entre noms de pages, recrée `dist/` et copie les assets |
+| Styles                    | `scripts/styles.mjs`                           | Compile Tailwind depuis le HTML final, sélectionne les icônes et minifie les deux feuilles CSS                   |
+| Indexation                | `scripts/build.mjs`                            | Écrit `sitemap.xml` et `robots.txt` depuis les pages et `siteUrl`                                                |
 
 Les pages sont préparées et leurs tokens vérifiés avant l'effacement de `dist/`. Une erreur ultérieure de copie ou de compilation peut néanmoins laisser une sortie partielle : ne publier qu'un build terminé avec succès.
 
@@ -77,13 +81,14 @@ Le build écrit uniquement dans `dist/`. Il ne génère plus `assets/js/projects
 
 | Sortie                                        | Origine                                                                                          |
 | --------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| `dist/*.html`                                 | Pages principales et pages villes assemblées                                                     |
+| `dist/*.html`                                 | Pages principales, villes, prestations, fiches chantier et FAQ assemblées                        |
 | `dist/assets/images/`                         | Copie de **tous** les fichiers sous `assets/images/`, sauf ceux dont le chemin finit par `.json` |
 | `dist/assets/js/`                             | Copie des modules source, sans bundling ni minification JS                                       |
 | `dist/assets/css/styles.css`                  | CSS des icônes utilisées puis CSS des composants, minifiées ensemble                             |
 | `dist/assets/css/utilities.css`               | Base, composants et utilitaires Tailwind générés depuis le HTML final                            |
 | `dist/assets/css/fonts/`                      | Police Bootstrap Icons du package installé                                                       |
 | `dist/assets/css/bootstrap-icons-LICENSE.txt` | Licence des icônes                                                                               |
+| `dist/_redirects`                             | Règles Cloudflare : accueil `/` et alias vers les pages `.html`                                  |
 | `dist/sitemap.xml`, `dist/robots.txt`         | Fichiers SEO générés                                                                             |
 
 Les JSON de configuration, les templates, les scripts Node, les tests et la documentation ne sont pas copiés. Un dossier photo non référencé dans `projects.json` n'apparaît pas dans le portfolio, mais ses fichiers sont tout de même copiés. Ne pas déposer d'originaux inutilisés ou de brouillons dans `assets/images/` en pensant qu'ils seront exclus.
@@ -96,47 +101,53 @@ Tous les champs suivants d'`artisan.json` sont des chaînes non vides : `name`, 
 
 `phone` est le texte affiché ; `phoneHref` est la valeur du lien `tel:` sans le préfixe. `artisanFullName` est un champ explicite : il n'est pas recalculé à partir du prénom et du nom. L'objet du lien de devis est dérivé du nom de l'entreprise.
 
-`site.siteUrl` doit être une URL HTTP(S), sans identifiants, paramètres ni fragment. Le slash final est retiré. `productionUrl` est conservé dans les données mais n'est pas utilisé par le build pour choisir l'environnement.
+`site.siteUrl` doit être une origine HTTP(S), sans chemin, identifiants, paramètres ni fragment. Le slash final est retiré. La variable `SITE_URL` peut la remplacer au build. `SITE_INDEXABLE` accepte uniquement `true` (défaut) ou `false` ; ce dernier ajoute `noindex, follow`, produit un sitemap vide et retire sa déclaration de `robots.txt`, tout en laissant l’exploration autorisée. Voir [SEO](seo.md).
+
+`artisan.profiles` est un tableau d’URLs HTTPS de profils publics de l’entreprise. Il alimente `sameAs` ; ne pas y ajouter un lien de compte privé ou un profil non vérifié.
 
 Les coordonnées injectées et le JSON-LD sont centralisés. Certains textes éditoriaux, libellés de marque et villes affichées restent écrits dans les pages/partials : un changement de marque ou de périmètre nécessite de les rechercher aussi.
 
 ### Villes
 
-| Champ                   | Type et usage                                                                               |
-| ----------------------- | ------------------------------------------------------------------------------------------- |
-| `file`                  | Chaîne unique correspondant à `^[a-z0-9-]+\.html$`, sans collision avec une page principale |
-| `city`                  | Nom de la ville, utilisé notamment dans `areaServed` du JSON-LD                             |
-| `title`, `description`  | Métadonnées de la page                                                                      |
-| `heroImage`, `heroAlt`  | URL/chemin de la photographie et texte alternatif                                           |
-| `heroTitle`, `heroCopy` | Titre et texte d'introduction visibles                                                      |
-| `localTitle`            | Titre de la section locale                                                                  |
-| `localParagraphs`       | Tableau de chaînes ; premier paragraphe en `mt-6`, suivants en `mt-4`                       |
-| `slug`                  | Présent dans les données actuelles mais non consommé par le rendu ; `file` détermine l'URL  |
+| Champ                   | Type et usage                                                                                                    |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `file`                  | Chaîne unique correspondant à `^[a-z0-9-]+\.html$`, sans collision avec une page principale                      |
+| `city`                  | Nom de la ville, utilisé notamment dans `areaServed` du JSON-LD                                                  |
+| `title`, `description`  | Métadonnées de la page                                                                                           |
+| `heroImage`, `heroAlt`  | URL/chemin de la photographie et texte alternatif                                                                |
+| `heroTitle`, `heroCopy` | Titre et texte d'introduction visibles                                                                           |
+| `localTitle`            | Titre de la section locale                                                                                       |
+| `localParagraphs`       | Tableau de chaînes ; premier paragraphe en `mt-6`, suivants en `mt-4`                                            |
+| `serviceFiles`          | Tableau facultatif de noms de pages connus dans `services.json` ; sans ce champ, tous les services sont proposés |
+| `slug`                  | Présent dans les données actuelles mais non consommé par le rendu ; `file` détermine l'URL                       |
 
-Tous les champs chaîne du tableau sauf `slug` sont obligatoires et non vides. `localParagraphs` doit être un tableau ; le code accepte un tableau vide. Les listes de liens vers les villes ne sont pas générées depuis ce JSON : voir [Maintenance](maintenance.md).
+Tous les champs de type chaîne du tableau sauf `slug` sont obligatoires et non vides. `localParagraphs` doit être un tableau ; le code accepte un tableau vide. Les listes de liens vers les villes ne sont pas générées depuis ce JSON : voir [Maintenance](maintenance.md).
 
 ### Réalisations : source et forme interne
 
 Le [guide d'ajout](ajouter-realisation.md) décrit le JSON source. `buildProjects()` le transforme ainsi :
 
-| Champ source                               | Champ rendu / valeur dérivée                      |
-| ------------------------------------------ | ------------------------------------------------- |
-| `date`                                     | `id` et `date`, puis tri décroissant              |
-| `category`                                 | `cat`, utilisé par `data-category` et les filtres |
-| `description`                              | `copy`, texte des cartes                          |
-| `label`, `title`, `points`                 | Conservés                                         |
-| Paire `avant.webp` / `apres.webp` présente | `mode: "compare"`, `before`, `after`, `gallery`   |
-| Photos numérotées sans paire               | `mode: "gallery"`, `images`                       |
+| Champ source                                                         | Champ rendu / valeur dérivée                                            |
+| -------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `date`                                                               | `id`, `date`, `file: realisation-YYYY-MM-DD.html`, puis tri décroissant |
+| `category`                                                           | `cat`, utilisé par `data-category` et les filtres                       |
+| `description`                                                        | `copy`, texte des cartes                                                |
+| `city`, `context`, `duration`, `surface`, `materials`, `workDetails` | Conservés si renseignés ; voir le guide d’ajout                         |
+| `label`, `title`, `points`                                           | Conservés                                                               |
+| Paire `avant.webp` / `apres.webp` présente                           | `mode: "compare"`, `before`, `after`, `gallery`                         |
+| Photos numérotées sans paire                                         | `mode: "gallery"`, `images`                                             |
 
-`mode`, `id`, `cat`, `copy`, les chemins et les tableaux d'images sont calculés ; ne pas les saisir dans le JSON éditorial.
+`mode`, `id`, `file`, `cat`, `copy`, les chemins et les tableaux d'images sont calculés ; ne pas les saisir dans le JSON éditorial.
 
 ### Règles de sélection et rendu
 
-| Emplacement  | Choix des réalisations                                                             | Affichage                                                                                                    |
-| ------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Accueil      | Premier projet avec `mode === "compare"` dans la liste triée, sinon premier projet | Vignette pleine largeur du conteneur et lien vers Réalisations ; pas de galerie supplémentaire sur l'accueil |
-| Réalisations | Tous les projets triés                                                             | Avant/après ou galerie, photos supplémentaires, textes, points et lien devis                                 |
-| Pages villes | `projects.slice(0, 3)`                                                             | Trois cartes ; image après pour un comparateur, première image sinon                                         |
+| Emplacement  | Choix des réalisations                                                             | Affichage                                                                                                            |
+| ------------ | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Accueil      | Premier projet avec `mode === "compare"` dans la liste triée, sinon premier projet | Vignette pleine largeur du conteneur et lien vers la fiche du chantier ; pas de galerie supplémentaire sur l'accueil |
+| Réalisations | Tous les projets triés                                                             | Avant/après ou galerie, photos supplémentaires, textes, points et lien devis                                         |
+| Pages villes | Jusqu’à trois chantiers de la même `city`, sinon les trois derniers du portfolio   | Trois cartes ; image après pour un comparateur, première image sinon                                                 |
+
+Les pages de prestations proposent jusqu’à trois chantiers de leur catégorie ; si aucun ne correspond, elles affichent des exemples généraux avec un titre explicite. Chaque fiche chantier possède une URL stable, les photos existantes et les seules métadonnées renseignées. Une commune absente n’est jamais déduite des zones desservies.
 
 Une galerie avec une seule image l'affiche en grand ; à partir de deux images, les deux premières sont côte à côte et les suivantes deviennent des vignettes supplémentaires sur la page Réalisations. Les comparateurs utilisent la paire principale et toutes les images numérotées en complément. Les petits pictogrammes des points sont déduits des mots du texte par `emojiFor()`.
 
@@ -154,13 +165,21 @@ Les tokens reconnus utilisent des lettres majuscules et underscores : `{{ARTISAN
 | Fragments communs          | `PARTIAL_*`, résolus dans `pages.mjs`                                                                        |
 | Réalisations               | `HOME_PROJECT`, `FEATURED_PROJECTS`, `CITY_PROJECTS`, préparés dans `build.mjs`                              |
 | Page locale                | `CITY_TITLE`, `CITY_DESCRIPTION`, `CITY_CANONICAL`, `CITY_HERO_*`, `CITY_LOCAL_*` dans `pages.mjs`           |
+| Pages détaillées           | `DETAIL_*` dans `content-pages.mjs` ; HTML du contenu et métadonnées séparés                                 |
+| Prestations / FAQ          | `SERVICE_LINKS`, `CITY_SERVICE_LINKS`, `HOME_FAQ` préparés au build                                          |
 | Données structurées        | `HOME_SCHEMA`, `BUSINESS_SCHEMA`, insérés dans des scripts `application/ld+json`                             |
 
-`replaceTokens()` effectue un remplacement en une passe. Les partials ont leurs tokens de coordonnées résolus à leur chargement avant leur insertion. Il n'y a pas de moteur de template récursif, de boucle ou de condition dans les HTML.
+`replaceTokens()` effectue un remplacement en une passe. Les partials sont chargés une fois, puis leurs tokens de coordonnées et de contenu sont résolus pour chaque rendu avant leur insertion. Il n'y a pas de moteur de template récursif, de boucle ou de condition dans les HTML.
 
 Les valeurs éditoriales sont échappées avec `escapeHtml()`. Les valeurs supplémentaires passées au remplacement peuvent être du HTML déjà rendu : les préparer explicitement et ne pas y injecter du texte brut non échappé. `businessSchema()` utilise `JSON.stringify()` et neutralise `<` pour produire du JSON-LD valide. Ne pas réutiliser un token HTML échappé comme valeur JSON.
 
 `assertResolved()` détecte les tokens conformes à la syntaxe majuscule restés dans le HTML ; les erreurs de syntaxe d'autres formes ne sont pas garanties d'être détectées.
+
+### Prestations et FAQ
+
+`services.json` contient pour chaque prestation : `file` (nom unique en minuscules/tirets avec extension `.html`), `category` (catégorie de chantier), `name`, `title`, `description`, `image`, `intro`, `sections` (tableau non vide de `{title, text}`) et `faq` (tableau non vide de `{question, answer}`). `faq.json` contient le même format de questions/réponses pour la page commune et l’accueil. Les textes sont bruts et échappés au rendu.
+
+Les fiches de chantier utilisent `CreativeWork`, les prestations `Service`, avec un prestataire commun `HomeAndConstructionBusiness`. Les nouvelles pages et les villes ont des nœuds `WebPage` et `BreadcrumbList`. Le JSON-LD ne contient ni notes agrégées non vérifiées, ni date de publication calculée depuis la date du chantier. Les FAQ restent du HTML lisible sans JavaScript.
 
 ## 6. CSS
 

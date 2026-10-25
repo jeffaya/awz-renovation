@@ -12,6 +12,7 @@ Site vitrine statique d'AWZ-Rénovation : services, réalisations, zones d'inter
 | [Architecture](docs/architecture.md)                   | Inventaire des fichiers, flux du build, données, tokens, CSS et contrats JavaScript |
 | [Ajouter une réalisation](docs/ajouter-realisation.md) | Procédure pas à pas, exemples avec/sans avant-après, catégories et dépannage        |
 | [Maintenance](docs/maintenance.md)                     | Pages, villes, coordonnées, images, tests, publication et limites connues           |
+| [SEO et recherches IA](docs/seo.md)                    | Contenus, domaine, prévisualisations, robots et réglages externes                   |
 
 ## Démarrage
 
@@ -35,7 +36,7 @@ Ouvrir `http://127.0.0.1:4173`. Après chaque modification des sources, relancer
 - Galerie : `1.webp`, `2.webp`, etc., seuls ou en complément de l'avant/après.
 - Construire avec `npm run build` et contrôler la page Réalisations.
 
-Le build alimente automatiquement l'accueil, le portfolio et les pages locales. Ne pas modifier les cartes HTML ou `assets/js/projects.js` pour ajouter un chantier. Les champs exacts et les règles de sélection sont dans le [guide détaillé](docs/ajouter-realisation.md).
+Le build alimente automatiquement l'accueil, le portfolio, les pages locales et les prestations. Il crée aussi une fiche `realisation-YYYY-MM-DD.html` par chantier et l'ajoute au sitemap avec ses photographies. Ne pas modifier les cartes HTML ou `assets/js/projects.js` pour ajouter un chantier. Les champs exacts et les règles de sélection sont dans le [guide détaillé](docs/ajouter-realisation.md).
 
 ## Commandes
 
@@ -62,4 +63,4 @@ Les vérifications GitHub Actions sont décrites dans [Maintenance](docs/mainten
 
 **Seul `dist/` est à publier.** `wrangler.jsonc` référence déjà `./dist` pour Cloudflare. La commande de build est `npm run build` ; le dossier peut également être servi sur un hébergement statique classique.
 
-Les URLs SEO proviennent de `assets/config/site.json` → `siteUrl`. `productionUrl` est une valeur de référence, pas un commutateur automatique. Les détails et la distinction entre vérification CI et déploiement sont dans le [guide de maintenance](docs/maintenance.md).
+Les URLs SEO proviennent de `assets/config/site.json` → `siteUrl`, avec une surcharge possible par `SITE_URL`. `SITE_INDEXABLE=false` réserve un build à une prévisualisation non indexable. Voir le [guide SEO](docs/seo.md) avant de changer de domaine. Les détails et la distinction entre vérification CI et déploiement sont dans le [guide de maintenance](docs/maintenance.md).

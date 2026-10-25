@@ -37,6 +37,18 @@ export function buildProjects(root = "assets/images/realisations") {
         meta.points.some((point) => typeof point !== "string" || !point.trim())
       )
         throw new Error(`${meta.date}: points doit contenir des textes non vides`);
+      for (const key of ["city", "context", "duration", "surface"]) {
+        if (meta[key] !== undefined && (typeof meta[key] !== "string" || !meta[key].trim()))
+          throw new Error(`${meta.date}: ${key} doit être un texte non vide`);
+      }
+      for (const key of ["materials", "workDetails"]) {
+        if (
+          meta[key] !== undefined &&
+          (!Array.isArray(meta[key]) ||
+            meta[key].some((value) => typeof value !== "string" || !value.trim()))
+        )
+          throw new Error(`${meta.date}: ${key} doit contenir des textes non vides`);
+      }
       const dir = join(root, meta.date);
       if (!existsSync(dir)) throw new Error(`${meta.date}: répertoire manquant`);
       const names = readdirSync(dir, { withFileTypes: true })
@@ -53,12 +65,18 @@ export function buildProjects(root = "assets/images/realisations") {
       const base = `assets/images/realisations/${meta.date}`;
       return {
         id: meta.date,
+        file: `realisation-${meta.date}.html`,
         date: meta.date,
         cat: meta.category,
         label: meta.label,
         title: meta.title,
         copy: meta.description,
         points: meta.points,
+        ...Object.fromEntries(
+          ["city", "context", "duration", "surface", "materials", "workDetails"]
+            .filter((key) => meta[key] !== undefined)
+            .map((key) => [key, meta[key]]),
+        ),
         mode: before ? "compare" : "gallery",
         ...(before
           ? {

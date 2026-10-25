@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 
 const cities = JSON.parse(readFileSync("assets/config/cities.json", "utf8"));
 const projects = JSON.parse(readFileSync("assets/images/realisations/projects.json", "utf8"));
+const services = JSON.parse(readFileSync("assets/config/services.json", "utf8"));
 const pages = [
   "index.html",
   "realisations.html",
@@ -10,6 +11,9 @@ const pages = [
   "zones-intervention.html",
   "mentions-legales.html",
   ...cities.map((city) => city.file),
+  ...services.map((service) => service.file),
+  ...projects.map((project) => `realisation-${project.date}.html`),
+  "questions-frequentes.html",
 ];
 
 test.beforeEach(async ({ page }) => {
@@ -139,5 +143,11 @@ test("project pages remain complete with JavaScript disabled", async ({ browser,
   await expect(page.locator(".featured-shell h2").first()).toBeVisible();
   await page.goto(`${baseURL}/index.html`);
   await expect(page.locator("#home-project h3")).toBeVisible();
+  await page.goto(`${baseURL}/${services[0].file}`);
+  const question = page.locator("details").first();
+  await question.locator("summary").click();
+  await expect(question.locator("p")).toBeVisible();
+  await page.goto(`${baseURL}/realisation-${projects[0].date}.html`);
+  await expect(page.getByRole("heading", { name: "Travaux réalisés" })).toBeVisible();
   await context.close();
 });

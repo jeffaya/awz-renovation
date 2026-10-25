@@ -16,6 +16,7 @@ Le site est statique : HTML et JSON sources, génération avec Node.js, CSS Tail
 | Comprendre les fichiers, données, tokens, CSS et JavaScript     | [docs/architecture.md](docs/architecture.md)               |
 | Modifier une ville, les coordonnées, une page ou le déploiement | [docs/maintenance.md](docs/maintenance.md)                 |
 | Retrouver les commandes de démarrage                            | [README.md](README.md)                                     |
+| SEO, recherches IA, domaine et prévisualisation                 | [docs/seo.md](docs/seo.md)                                 |
 
 ## Sources à modifier
 
@@ -23,13 +24,14 @@ Le site est statique : HTML et JSON sources, génération avec Node.js, CSS Tail
 | ------------------------------------ | -------------------------------------------------------------------------------------- |
 | Nouveau chantier                     | `assets/images/realisations/projects.json` et un dossier `YYYY-MM-DD/` au même niveau  |
 | Téléphone, adresse, e-mail, identité | `assets/config/artisan.json`                                                           |
-| URL utilisée pour le SEO             | `assets/config/site.json`, propriété `siteUrl`                                         |
+| URL utilisée pour le SEO             | `assets/config/site.json`, propriété `siteUrl` ; surcharge `SITE_URL` au build         |
 | Page locale                          | `assets/config/cities.json` et, pour la structure commune, `templates/pages/city.html` |
 | Texte d'une page principale          | Le fichier `.html` correspondant à la racine                                           |
 | Menu, footer ou bloc partagé         | `templates/partials/`                                                                  |
 | Structure des cartes de réalisation  | `scripts/render-projects.mjs`                                                          |
 | Styles des composants                | `assets/css/styles.css`                                                                |
 | Interactions navigateur              | `assets/js/`                                                                           |
+| Pages de prestations et FAQ          | `assets/config/services.json`, `assets/config/faq.json`, `templates/pages/detail.html` |
 
 ## Ajouter un chantier : parcours court
 
@@ -38,9 +40,9 @@ Le site est statique : HTML et JSON sources, génération avec Node.js, CSS Tail
 3. Créer `assets/images/realisations/YYYY-MM-DD/` et y placer de vraies images WebP : `avant.webp` + `apres.webp` ensemble, ou `1.webp`, `2.webp`, etc. Les photos numérotées peuvent compléter un comparateur.
 4. Ajouter **une entrée** au tableau `projects.json` avec `date`, `category`, `label`, `title`, `description`, `points`. Ne pas remplacer les entrées existantes.
 5. Formater le JSON, construire le site et contrôler le nouveau chantier, son filtre et les images dans l'aperçu. Le guide indique les commandes exactes.
-6. Vérifier l'accueil : il choisit le **comparateur le plus récent**, pas nécessairement le chantier le plus récent si celui-ci n'a qu'une galerie. Les pages locales choisissent les trois derniers chantiers toutes catégories confondues.
+6. Vérifier l'accueil : il choisit le **comparateur le plus récent**, pas nécessairement le chantier le plus récent si celui-ci n'a qu'une galerie. Les pages locales choisissent jusqu’à trois chantiers dont `city` correspond exactement à la ville, ou les trois derniers du portfolio si aucun ne correspond. Sans localisation renseignée, ne pas présenter ces exemples comme des chantiers réalisés dans la ville.
 
-Un ajout courant n'exige **aucun changement de HTML, CSS, JavaScript, sitemap ou template**.
+Un ajout courant n'exige **aucun changement de HTML, CSS, JavaScript, sitemap ou template**. La fiche du chantier et son entrée au sitemap sont générées automatiquement. Les métadonnées facultatives doivent être factuelles ; leur contrat est décrit dans le guide d'ajout.
 
 ## Conventions à préserver
 

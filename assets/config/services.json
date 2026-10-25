@@ -1,0 +1,200 @@
+[
+  {
+    "file": "maconnerie-gros-oeuvre.html",
+    "category": "maconnerie",
+    "name": "Maçonnerie & gros œuvre",
+    "title": "Maçonnerie à Avoine, Chinon et Saumur | AWZ-Rénovation",
+    "description": "Murs, ouvertures, dalles et reprises de maçonnerie autour d’Avoine, Chinon et Saumur. Découvrez les travaux proposés par AWZ-Rénovation et demandez un devis.",
+    "image": "assets/images/services/maconnerie/cover.webp",
+    "intro": "AWZ-Rénovation réalise des travaux de maçonnerie générale : fondations, murs, dalles, ouvertures et reprises du bâti existant. L’entreprise est basée à Avoine et accompagne les projets de rénovation de particuliers et de professionnels.",
+    "sections": [
+      {
+        "title": "Quels travaux de maçonnerie confier à AWZ ?",
+        "text": "Une intervention peut concerner la création d’un mur, la reprise d’une maçonnerie existante, une dalle ou la transformation d’un espace. Le projet doit être décrit à partir de l’ouvrage concerné, de son usage et de l’état des supports. Les travaux de pierre et de façade sont également présentés dans nos prestations dédiées."
+      },
+      {
+        "title": "Préparer une ouverture ou une transformation",
+        "text": "Pour une ouverture dans un mur existant, précisez le matériau, l’épaisseur si elle est connue, les dimensions souhaitées et ce qui se trouve au-dessus. Les contraintes de structure et les éventuelles études nécessaires doivent être examinées avant de définir les travaux. Des photos facilitent le premier échange, sans remplacer l’examen du bâtiment."
+      },
+      {
+        "title": "Les informations utiles pour votre devis",
+        "text": "Indiquez la commune du chantier, l’accès à la zone de travail, les dimensions approximatives et le résultat attendu. Signalez aussi les fissures ou les désordres visibles, ainsi que l’occupation des lieux pendant les travaux. Ces éléments permettent de préciser la demande et d’organiser la suite avec Antony Wouenzell."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Intervenez-vous pour de petits travaux de maçonnerie ?",
+        "answer": "AWZ-Rénovation présente une offre de petits et gros chantiers. Décrivez la réparation ou l’ouvrage souhaité, avec sa localisation et des photos, pour vérifier les possibilités d’intervention."
+      },
+      {
+        "question": "Peut-on obtenir un prix pour une ouverture à partir d’une photo ?",
+        "answer": "Une photo permet de préparer l’échange, mais ne suffit pas à confirmer la structure du mur ni le dimensionnement de l’ouvrage. Le périmètre du devis doit être défini après examen des contraintes du projet."
+      }
+    ]
+  },
+  {
+    "file": "renovation-interieure.html",
+    "category": "interieur",
+    "name": "Rénovation intérieure",
+    "title": "Rénovation intérieure à Avoine et alentours | AWZ-Rénovation",
+    "description": "Transformation de pièces, reprise des surfaces, sols et finitions : découvrez les rénovations intérieures d’AWZ-Rénovation à Avoine et alentours.",
+    "image": "assets/images/services/renovation-interieure/cover.webp",
+    "intro": "AWZ-Rénovation accompagne la transformation de maisons, de pièces de vie et de bâtiments anciens. Les réalisations présentées sur le site montrent des reprises de volumes, de surfaces et de sols, avec une attention portée aux éléments conservés.",
+    "sections": [
+      {
+        "title": "Définir ce que vous souhaitez transformer",
+        "text": "Le point de départ est l’usage de la pièce : gagner en confort, remettre les surfaces en état, modifier l’organisation ou harmoniser les finitions. Précisez les éléments à conserver, les espaces concernés et les contraintes liées à l’occupation de la maison. Cela permet de distinguer les travaux prioritaires des finitions à prévoir."
+      },
+      {
+        "title": "Conserver le caractère d’un intérieur ancien",
+        "text": "Une rénovation peut associer des surfaces neuves à des éléments existants, comme une cheminée, de la pierre ou des poutres. Notre portfolio présente notamment une pièce rénovée autour de sa cheminée et des transformations d’intérieurs anciens. Les photos permettent de comparer le résultat recherché avec des travaux déjà documentés."
+      },
+      {
+        "title": "Organiser votre demande de rénovation",
+        "text": "Préparez des vues d’ensemble, des photos des détails à reprendre et les dimensions approximatives. Mentionnez les pièces habitées pendant le chantier et la période souhaitée. Le contenu du devis dépendra des travaux retenus et de l’état réel des supports ; les disponibilités se confirment directement avec l’artisan."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Peut-on rénover une seule pièce ?",
+        "answer": "Oui, les prestations présentées couvrent aussi la rénovation de pièces et la reprise de surfaces. Expliquez ce que vous souhaitez conserver ou modifier pour définir un périmètre adapté."
+      },
+      {
+        "question": "Où voir des exemples de rénovation intérieure ?",
+        "answer": "La page Réalisations rassemble les chantiers documentés. Le filtre Rénovation intérieure permet de retrouver les transformations et les photos disponibles pour cette catégorie."
+      }
+    ]
+  },
+  {
+    "file": "restauration-pierre-tuffeau.html",
+    "category": "pierre",
+    "name": "Pierre & tuffeau",
+    "title": "Restauration de pierre et tuffeau à Avoine | AWZ-Rénovation",
+    "description": "Restauration de murs en pierre, reprise de joints et rénovation du tuffeau autour d’Avoine, Chinon et Saumur. Découvrez les réalisations AWZ-Rénovation.",
+    "image": "assets/images/services/pierre-tuffeau/cover.webp",
+    "intro": "La pierre et le tuffeau font partie des prestations d’AWZ-Rénovation : restauration, reprises de maçonnerie et joints de pierres apparentes. L’objectif est de travailler avec les éléments existants et de préserver le caractère du bâtiment.",
+    "sections": [
+      {
+        "title": "Reprise des pierres et des joints",
+        "text": "Une demande peut porter sur un mur dont les joints sont dégradés, des reprises localisées ou une façade à remettre en valeur. Les réalisations du site présentent des murs et façades en pierre, avec des interventions sur la maçonnerie et les joints. Chaque fiche indique les travaux documentés et les photos disponibles."
+      },
+      {
+        "title": "Décrire l’état du mur avant d’intervenir",
+        "text": "Signalez les zones abîmées, les joints manquants, les anciens revêtements et les traces d’humidité éventuelles. Une vue générale et des photos de détail aident à situer les désordres. Le choix des reprises et des finitions doit tenir compte de la pierre présente et de l’état du support ; il ne se déduit pas uniquement de l’apparence d’une photo."
+      },
+      {
+        "title": "Pierre intérieure ou façade extérieure",
+        "text": "Précisez si le mur est à l’intérieur ou à l’extérieur, sa hauteur, sa surface approximative et les possibilités d’accès. Pour les façades, indiquez les éléments décoratifs à conserver. Les travaux de moulures et de corniches sont également illustrés dans les réalisations de ravalement et de pierre de taille."
+      }
+    ],
+    "faq": [
+      {
+        "question": "AWZ intervient-il sur les joints de pierres apparentes ?",
+        "answer": "Oui, les joints de pierres apparentes et les reprises de maçonnerie en pierre font partie des prestations présentées. Envoyez des photos et la commune du chantier pour préciser votre besoin."
+      },
+      {
+        "question": "Peut-on conserver les pierres existantes ?",
+        "answer": "Le projet se définit à partir de leur état. Le portfolio montre des restaurations conservant la pierre existante avec des reprises localisées ; la solution adaptée à votre mur reste à confirmer après examen."
+      }
+    ]
+  },
+  {
+    "file": "ravalement-facade.html",
+    "category": "facades",
+    "name": "Ravalement & façade",
+    "title": "Ravalement de façade à Avoine et Chinon | AWZ-Rénovation",
+    "description": "Ravalement, réparation et restauration de façades autour d’Avoine et Chinon. Consultez les chantiers photographiés et contactez AWZ-Rénovation pour un devis.",
+    "image": "assets/images/services/facade/cover.webp",
+    "intro": "AWZ-Rénovation propose le ravalement, la réparation et la restauration de façades. Les chantiers documentés comprennent des façades en pierre, des reprises de surfaces et la restauration de moulures et de corniches.",
+    "sections": [
+      {
+        "title": "Identifier les parties à reprendre",
+        "text": "Une façade ne présente pas toujours le même état sur toute sa surface. Pour préparer le projet, distinguez les zones salies, les joints à reprendre, les parties abîmées et les éléments décoratifs. Cette description aide à préciser si la demande concerne une intervention localisée ou un ravalement plus large."
+      },
+      {
+        "title": "Préserver les détails de la façade",
+        "text": "La restauration d’une demeure ancienne peut inclure des moulures, des corniches et des décors en pierre. Un chantier du portfolio présente précisément ce type de travaux. Les photographies servent à montrer la nature des interventions réalisées, sans présumer que la même solution conviendra à toutes les façades."
+      },
+      {
+        "title": "Préparer l’accès au chantier",
+        "text": "Indiquez la hauteur de la façade, son accès depuis la rue ou le jardin, les zones mitoyennes et les contraintes d’occupation. Joignez des photos de chaque face concernée. Le devis doit préciser le périmètre des reprises et des finitions retenues après examen de l’existant."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Proposez-vous la restauration de façades en pierre ?",
+        "answer": "Oui, le site présente plusieurs rénovations et restaurations de façades en pierre, ainsi que des reprises de joints et de maçonnerie. Les fiches de chantier détaillent les travaux disponibles dans le portfolio."
+      },
+      {
+        "question": "Quel est le prix d’un ravalement ?",
+        "answer": "Il n’y a pas de tarif unique publié sur ce site. La surface, la hauteur, l’accès, l’état du support et les reprises nécessaires font varier le périmètre du chantier. AWZ-Rénovation propose un devis gratuit et personnalisé."
+      }
+    ]
+  },
+  {
+    "file": "dalles-terrasses.html",
+    "category": "terrasses",
+    "name": "Dalles & terrasses",
+    "title": "Dalles et terrasses à Avoine et alentours | AWZ-Rénovation",
+    "description": "Création de dalles béton, terrasses et aménagements extérieurs autour d’Avoine. Découvrez un chantier de terrasse et préparez votre devis avec AWZ-Rénovation.",
+    "image": "assets/images/services/terrasse/cover.webp",
+    "intro": "AWZ-Rénovation réalise des dalles, des terrasses et des aménagements extérieurs. Le portfolio présente notamment l’aménagement d’un espace extérieur avec surface minérale, pergola et zone de détente.",
+    "sections": [
+      {
+        "title": "Définir l’usage de votre terrasse",
+        "text": "Un espace de repas, un passage et une zone de détente n’impliquent pas les mêmes contraintes. Décrivez les usages souhaités, les dimensions et les accès depuis la maison. Les niveaux existants, les seuils et les éléments à conserver font partie des points à examiner lors de la préparation du projet."
+      },
+      {
+        "title": "Relier la dalle à son environnement",
+        "text": "Précisez le support actuel, les différences de niveau et les abords de la future terrasse. Signalez les difficultés d’accès pour les matériaux et les éventuelles zones où l’eau s’accumule. Ces informations permettent de préparer l’étude du chantier ; les choix techniques dépendent de la configuration du terrain."
+      },
+      {
+        "title": "S’appuyer sur une réalisation photographiée",
+        "text": "La réalisation consacrée à une terrasse montre les vues disponibles de l’aménagement. Elle permet de discuter d’un objectif concret avec l’artisan. Pour votre propre projet, transmettez un croquis simple, quelques photos et la commune afin de préciser les travaux à chiffrer."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Réalisez-vous des dalles béton ?",
+        "answer": "Oui, la création de dalles béton figure parmi les prestations d’AWZ-Rénovation. Indiquez l’usage de la dalle, les dimensions souhaitées et l’état actuel du terrain pour préparer votre demande."
+      },
+      {
+        "question": "Quelles informations transmettre pour une terrasse ?",
+        "answer": "La commune, les dimensions approximatives, les niveaux, l’accès et des photos de l’existant sont utiles. Ajoutez les usages souhaités et les éléments à conserver, comme les seuils ou les aménagements voisins."
+      }
+    ]
+  },
+  {
+    "file": "pierre-taille-finitions.html",
+    "category": "finitions",
+    "name": "Pierre de taille & finitions",
+    "title": "Pierre de taille et finitions à Avoine | AWZ-Rénovation",
+    "description": "Reprises de pierre de taille, éléments décoratifs et finitions du bâti ancien : découvrez le savoir-faire présenté par AWZ-Rénovation à Avoine.",
+    "image": "assets/images/services/sols-finitions/cover.webp",
+    "intro": "Les reprises de pierre de taille et les finitions complètent les travaux de rénovation d’AWZ-Rénovation. Les projets présentés associent remise en valeur de la pierre, traitement des surfaces et conservation du caractère des bâtiments.",
+    "sections": [
+      {
+        "title": "Soigner la rencontre entre ancien et rénové",
+        "text": "Une finition se juge aussi à sa relation avec les éléments conservés : pierre, cheminée, sol ou surfaces voisines. Le portfolio comprend une rénovation de pièce autour d’une cheminée avec reprise des surfaces et du sol. Les photos aident à préciser le rendu attendu et les parties du bâtiment à préserver."
+      },
+      {
+        "title": "Reprendre les détails en pierre",
+        "text": "Les travaux de façade peuvent également porter sur des moulures, des corniches et des éléments décoratifs. Leur état et leur position doivent être décrits avant de définir une reprise. Pour un premier échange, fournissez des vues rapprochées et une vue d’ensemble permettant de comprendre leur place dans l’ouvrage."
+      },
+      {
+        "title": "Préciser le résultat attendu",
+        "text": "Indiquez les matériaux visibles, les zones à reprendre et les finitions que vous souhaitez conserver. Une demande peut concerner un détail localisé ou s’intégrer à une rénovation plus large. L’artisan vous aide à définir les travaux à inclure dans le devis en fonction de l’existant."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Peut-on intégrer les finitions à une rénovation intérieure ?",
+        "answer": "Oui, les réalisations du site présentent des projets associant reprise des surfaces, sols et mise en valeur d’éléments existants. Le périmètre exact se définit lors de l’échange sur votre projet."
+      },
+      {
+        "question": "Où voir des travaux sur des moulures ou des corniches ?",
+        "answer": "Le portfolio comporte un chantier intitulé Ravalement de façade et restauration des moulures et corniches. Sa fiche présente les travaux documentés et les photographies disponibles."
+      }
+    ]
+  }
+]

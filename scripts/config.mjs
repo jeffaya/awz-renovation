@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { escapeHtml } from "./html.mjs";
+import { resolveSiteUrl, resolveIndexable } from "./site-settings.mjs";
 
 export const artisan = JSON.parse(readFileSync("assets/config/artisan.json", "utf8"));
 export const site = JSON.parse(readFileSync("assets/config/site.json", "utf8"));
@@ -21,16 +22,19 @@ for (const key of [
   if (typeof artisan[key] !== "string" || !artisan[key].trim())
     throw new Error(`artisan.json: champ ${key} manquant ou vide`);
 }
-const url = new URL(site.siteUrl);
+site.siteUrl = resolveSiteUrl(process.env.SITE_URL ?? site.siteUrl);
+site.indexable = resolveIndexable(process.env.SITE_INDEXABLE);
 if (
-  !["https:", "http:"].includes(url.protocol) ||
-  url.username ||
-  url.password ||
-  url.search ||
-  url.hash
+  !Array.isArray(artisan.profiles) ||
+  artisan.profiles.some((profile) => {
+    try {
+      return new URL(profile).protocol !== "https:";
+    } catch {
+      return true;
+    }
+  })
 )
-  throw new Error("site.json: siteUrl doit être une URL HTTP(S) sans paramètres");
-site.siteUrl = site.siteUrl.replace(/\/+$/, "");
+  throw new Error("artisan.json: profiles doit contenir des URLs HTTPS publiques");
 if (!Array.isArray(cities)) throw new Error("cities.json doit contenir un tableau");
 const filenames = new Set();
 for (const city of cities) {
@@ -84,12 +88,10 @@ export function replaceTokens(text, values = {}) {
   return text.replace(/\{\{([A-Z_]+)\}\}/g, (match, key) => tokens[key] ?? match);
 }
 
-export function businessSchema(home = false) {
-  const data = {
-    "@context": "https://schema.org",
-    "@type": home
-      ? ["LocalBusiness", "HomeAndConstructionBusiness"]
-      : "HomeAndConstructionBusiness",
+export function businessData() {
+  return {
+    "@type": "HomeAndConstructionBusiness",
+    "@id": `${site.siteUrl}/#entreprise`,
     name: artisan.name,
     url: `${site.siteUrl}/`,
     telephone: artisan.phoneHref,
@@ -101,13 +103,30 @@ export function businessSchema(home = false) {
       addressLocality: artisan.city,
       addressCountry: "FR",
     },
-    areaServed: cities.map((city) => city.city),
-    ...(home
-      ? {
-          description:
-            "AWZ-Rénovation réalise vos travaux de maçonnerie, rénovation intérieure, pierre, tuffeau, façades et terrasses autour d’Avoine, Chinon et Saumur.",
-        }
-      : { priceRange: "€€" }),
+    areaServed: cities.map((city) => ({ "@type": "City", name: city.city })),
+    identifier: { "@type": "PropertyValue", propertyID: "SIRET", value: artisan.siret },
+    logo: `${site.siteUrl}/assets/images/brand/logo-awz.svg`,
+    image: `${site.siteUrl}/assets/images/brand/social-share.jpg`,
+    sameAs: artisan.profiles,
+    description:
+      "AWZ-Rénovation réalise vos travaux de maçonnerie, rénovation intérieure, pierre, tuffeau, façades et terrasses autour d’Avoine, Chinon et Saumur.",
+  };
+}
+
+export function businessSchema() {
+  const data = {
+    "@context": "https://schema.org",
+    "@graph": [
+      businessData(),
+      {
+        "@type": "WebSite",
+        "@id": `${site.siteUrl}/#site`,
+        url: `${site.siteUrl}/`,
+        name: artisan.name,
+        inLanguage: "fr-FR",
+        publisher: { "@id": `${site.siteUrl}/#entreprise` },
+      },
+    ],
   };
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }

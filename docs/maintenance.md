@@ -12,7 +12,7 @@ npm run build
 npm run preview
 ```
 
-Node.js 22 ou supérieur est requis. Les outils de compilation sont des dépendances de développement : ils doivent être installés pour construire le site, même si le résultat est destiné à la production. Utiliser `npm ci` pour respecter le lockfile. Aucune variable d'environnement ni aucun secret n'est requis pour construire le site.
+Node.js 22 ou supérieur est requis. Les outils de compilation sont des dépendances de développement : ils doivent être installés pour construire le site, même si le résultat est destiné à la production. Utiliser `npm ci` pour respecter le lockfile. Aucune variable d'environnement ni aucun secret n'est requis pour construire le site. Les variables facultatives `SITE_URL` et `SITE_INDEXABLE` sont décrites dans le [guide SEO](seo.md).
 
 L'aperçu sert uniquement le `dist/` déjà construit sur `http://127.0.0.1:4173`. Il ne surveille pas les sources. `PORT=4174 npm run preview` permet de changer le port du serveur local ; cela ne modifie pas la configuration Playwright.
 
@@ -32,7 +32,7 @@ Les demandes de devis sont des liens `mailto:` avec un objet préparé. Il n'y a
 
 Modifier les textes propres à une page dans son `.html` à la racine. Modifier le menu, le footer et les autres fragments communs dans [templates/partials](../templates/partials/), puis reconstruire pour vérifier toutes les pages qui les utilisent.
 
-Le CTA du footer est dans `footer.html` et pointe vers `https://seignemorte.com`. Les listes de liens et les ancres restent écrites à la main : préserver leurs destinations, notamment `index.html#…` pour rejoindre une section depuis une autre page.
+Le CTA du footer est dans `footer.html` et pointe vers `https://seignemorte.com`. Les listes de liens historiques vers les villes et les ancres restent écrites à la main ; les liens vers les prestations sont générés depuis `services.json`. Pour les liens manuels : préserver leurs destinations, notamment `index.html#…` pour rejoindre une section depuis une autre page.
 
 Pour ajouter un partial, l'enregistrer dans `scripts/pages.mjs` et insérer son token `PARTIAL_*` dans les pages concernées. Le build refuse les tokens majuscules laissés sans résolution.
 
@@ -42,12 +42,12 @@ Le contenu des villes vient de [assets/config/cities.json](../assets/config/citi
 
 1. Copier une entrée existante du tableau et adapter tous ses contenus à la ville réellement desservie.
 2. Choisir un `file` unique en minuscules et tirets, terminé par `.html`. Ce champ détermine l'URL publiée. Le champ `slug` actuellement présent n'est pas utilisé par le rendu.
-3. Renseigner `city`, `title`, `description`, `heroImage`, `heroAlt`, `heroTitle`, `heroCopy`, `localTitle` et le tableau `localParagraphs`.
+3. Renseigner `city`, `title`, `description`, `heroImage`, `heroAlt`, `heroTitle`, `heroCopy`, `localTitle` et le tableau `localParagraphs`. Ajouter `serviceFiles` avec les noms des prestations pertinentes dans `services.json`.
 4. Vérifier l'image, son texte alternatif et ses éventuels crédits. Un chemin local part de la racine des pages, par exemple `assets/images/site/...` ; une URL distante dépend du service qui l'héberge.
 5. Ajouter les liens de navigation nécessaires. Rechercher les listes existantes dans `zones-intervention.html`, `contact.html`, `templates/partials/footer.html` et `templates/partials/zones.html` ; elles ne sont pas synchronisées automatiquement avec le JSON.
 6. Formater le JSON, reconstruire, puis contrôler la nouvelle page et les liens qui y conduisent.
 
-La nouvelle page est automatiquement incluse dans le sitemap, la liste `areaServed` du JSON-LD et l'inventaire des pages locales des tests navigateur. Ses trois réalisations sont les plus récentes du portfolio global ; il n'existe pas de relation chantier–ville dans les données.
+La nouvelle page est automatiquement incluse dans le sitemap, la liste `areaServed` du JSON-LD et l'inventaire des pages locales des tests navigateur. Ses réalisations proviennent des chantiers dont `city` correspond exactement au nom de la ville, à concurrence de trois. Sans correspondance, elle propose trois exemples récents du portfolio global, sans leur attribuer une localisation.
 
 Les photos de villes utilisent actuellement Wikimedia via `wsrv.nl`. Une indisponibilité de ces services peut affecter les images sans faire échouer le build. Les tests navigateur remplacent ces réponses par une image de test : vérifier les vraies images séparément lors d'une modification de leurs URLs.
 
@@ -86,7 +86,7 @@ Une modification du menu doit conserver navigation clavier, fermeture par Échap
 Un simple chantier utilise une catégorie existante. Pour étendre les catégories :
 
 1. Ajouter la clé à l'ensemble `categories` dans `scripts/projects.mjs`.
-2. Ajouter le bouton avec le même `data-filter` dans `realisations.html`, avec un libellé lisible et les attributs cohérents avec ses voisins.
+2. Ajouter une prestation portant cette `category` dans `assets/config/services.json`, puis ajouter le bouton avec le même `data-filter` dans `realisations.html`, avec un libellé lisible et les attributs cohérents avec ses voisins.
 3. Adapter la liste des catégories parcourues par le test de filtrage dans `tests/browser/site.spec.mjs` et les tests unitaires concernés.
 4. Mettre à jour le tableau dans [Ajouter une réalisation](ajouter-realisation.md).
 5. Vérifier les filtres, y compris une catégorie sans chantier, et l'absence de débordement des boutons sur mobile.
@@ -95,18 +95,18 @@ Le JavaScript de filtrage utilise les attributs ; il ne contient pas de liste de
 
 ## 6. Vérifications et CI
 
-| Commande / fichier         | Ce qui est vérifié                                                                          |
-| -------------------------- | ------------------------------------------------------------------------------------------- |
-| `npm run format:check`     | Formatage des sources et de la documentation avec Prettier                                  |
-| `npm test`                 | Validation des projets, tri des photos, rendu de galerie, échappement et tokens non résolus |
-| `npm run build`            | Chargement des JSON, validations, assemblage du HTML, génération CSS et copie des assets    |
-| `npm run check`            | Les trois commandes précédentes, dans cet ordre                                             |
-| `npm run test:browser`     | Pages, liens locaux, interactions et erreurs navigateur sur desktop/mobile                  |
-| `.github/workflows/ci.yml` | Installation Node 22, `npm ci`, `npm run check`, installation Chromium et tests navigateur  |
+| Commande / fichier         | Ce qui est vérifié                                                                                    |
+| -------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `npm run format:check`     | Formatage des sources et de la documentation avec Prettier                                            |
+| `npm test`                 | Projets et métadonnées, rendu, échappement, liens, canonical, JSON-LD, sitemap/images et mode preview |
+| `npm run build`            | Chargement des JSON, validations, assemblage du HTML, génération CSS et copie des assets              |
+| `npm run check`            | Les trois commandes précédentes, dans cet ordre                                                       |
+| `npm run test:browser`     | Pages, liens locaux, interactions et erreurs navigateur sur desktop/mobile                            |
+| `.github/workflows/ci.yml` | Installation Node 22, `npm ci`, `npm run check`, installation Chromium et tests navigateur            |
 
 Pour corriger le formatage d'un fichier, préférer une commande ciblée telle que `npx prettier --write docs/maintenance.md`. `npm run format` formate l'ensemble du dépôt : inspecter ensuite le diff.
 
-Les tests Playwright couvrent les pages principales et les villes sur des viewports desktop 1440 × 1000 et mobile 390 × 844, ainsi que le menu, les filtres, les comparateurs, la visionneuse et la présence du portfolio sans JavaScript. Ils vérifient les liens locaux et les erreurs de ressources ; le contrôle du débordement horizontal exclut actuellement Mentions légales. Ils ne remplacent pas une vérification visuelle du cadrage des photos ou de la disponibilité des images externes.
+Les tests Playwright couvrent les pages principales, les villes, les prestations, les fiches chantier et la FAQ sur des viewports desktop 1440 × 1000 et mobile 390 × 844, ainsi que le menu, les filtres, les comparateurs, la visionneuse et la présence du portfolio, des fiches et des FAQ sans JavaScript. Ils vérifient les liens locaux et les erreurs de ressources ; le contrôle du débordement horizontal exclut actuellement Mentions légales. Ils ne remplacent pas une vérification visuelle du cadrage des photos ou de la disponibilité des images externes.
 
 Installer Chromium une fois avec `npx playwright install chromium`. La CI utilise `--with-deps` pour installer aussi les bibliothèques système. Si un environnement fournit déjà un Chromium compatible, `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` peut désigner son exécutable ; cette option est prévue dans `playwright.config.mjs`.
 
@@ -130,11 +130,11 @@ Il n'y a pas de script npm `deploy` ni de dépendance Wrangler dans le dépôt. 
 
 ### Domaine et SEO
 
-Modifier `assets/config/site.json` → `siteUrl` lorsque le domaine de publication change. Cette valeur alimente canonical, Open Graph, JSON-LD, sitemap et robots. Elle doit être une URL HTTP(S) sans identifiants, paramètres ou fragment.
+Suivre le [guide SEO et recherches IA](seo.md). `assets/config/site.json` → `siteUrl` reste l’origine par défaut, actuellement `https://awz-renovation.jf-seignemorte.workers.dev`. `SITE_URL` permet de choisir une autre origine au build ; cette valeur alimente canonical, Open Graph, JSON-LD, sitemap et robots. Elle ne doit contenir aucun chemin, identifiant, paramètre ou fragment.
 
-La configuration actuelle utilise `https://awz-renovation.jf-seignemorte.workers.dev` comme `siteUrl`. `productionUrl` contient `https://www.awz-renovation.fr`, mais ce champ n'est pas lu pour basculer automatiquement en production. Mettre `siteUrl` à jour explicitement si le domaine définitif devient celui à indexer, puis reconstruire et contrôler les fichiers SEO générés.
+Le build est indexable par défaut. Un build de prévisualisation doit utiliser `SITE_INDEXABLE=false` : les pages portent `noindex, follow`, le sitemap est vide et `robots.txt` reste ouvert pour permettre aux moteurs de lire la directive. Ne pas utiliser ce réglage sur le site public à indexer.
 
-`robots.txt` autorise actuellement l'exploration de toutes les pages. Aucun mode preview `noindex` n'est implémenté. La publication d'un environnement de prévisualisation isolé demanderait une décision explicite sur son indexation.
+Les URLs `.html` sont conservées par `assets.html_handling: "none"`. Publier le fichier `_redirects` généré avec `dist/` pour servir l’accueil et rediriger les anciens chemins sans extension. Voir le [guide SEO](seo.md#urls-html-et-cloudflare).
 
 ### Avant une mise en ligne
 
@@ -144,7 +144,7 @@ Vérifier que le build est terminé avec succès, que les sources prévues sont 
 
 Ces points décrivent l'existant ; ils n'impliquent pas de les modifier lors d'une simple demande de contenu.
 
-- Un chantier est identifié par sa date unique ; aucune publication programmée, sélection manuelle, page détaillée ou association à une ville n'existe.
+- Un chantier est identifié par sa date unique ; aucune publication programmée ou sélection manuelle n’existe. Sa date détermine aussi son URL détaillée : une correction de date après publication exige une redirection de l’ancienne URL.
 - Les photos ne sont pas validées ni optimisées au build. Les assets d'images inutilisés sont copiés eux aussi.
 - Les modules JavaScript sont copiés tels quels ; seules les CSS sont compilées/minifiées.
 - Les liens vers les villes sont maintenus dans plusieurs blocs HTML, séparément de `cities.json`.
