@@ -2,13 +2,13 @@
 
 [Accueil documentation](../README.md) · [Guide agent](../AGENTS.md) · [Architecture](architecture.md) · [Maintenance](maintenance.md)
 
-Une réalisation correspond à **une entrée de métadonnées et un dossier de photos portant la même date**. Le build crée ensuite les cartes des différentes pages. Il n'y a pas de page individuelle par chantier ni de commande d'import automatique.
+Une réalisation correspond à **une entrée de métadonnées et un dossier de photos portant la même date**. Le build crée ensuite les cartes des différentes pages et une fiche `realisation-YYYY-MM-DD.html`, incluse au sitemap avec les photographies. Il n’y a pas de commande d’import automatique.
 
 ## 1. Rassembler les informations
 
 Avant de modifier le dépôt, disposer de la date réelle du chantier, de sa catégorie, des textes et des photos à publier. Les exemples ci-dessous sont fictifs : remplacer la date et les descriptions par les informations fournies, sans inventer de travaux ou de localisation.
 
-La date doit être une date de calendrier valide au format `YYYY-MM-DD`, et être unique dans le portfolio. Elle sert à la fois d'identifiant, de nom de dossier et de clé de tri. Vérifier les dates existantes dans [projects.json](../assets/images/realisations/projects.json).
+La date doit être une date de calendrier valide au format `YYYY-MM-DD`, et être unique dans le portfolio. Elle sert à la fois d’identifiant, de nom de dossier, de clé de tri et de composant de l’URL de la fiche. Vérifier les dates existantes dans [projects.json](../assets/images/realisations/projects.json).
 
 **Deux chantiers le même jour ne sont pas représentables avec le modèle actuel.** Ne pas décaler arbitrairement une date : demander quelle donnée utiliser, ou prévoir une évolution explicite du modèle avec un identifiant distinct.
 
@@ -76,6 +76,19 @@ Cet objet fonctionne aussi bien avec un comparateur qu'avec une galerie : **les 
 
 Les cinq premiers champs sont des chaînes obligatoires non vides. Écrire les textes normalement, avec accents, apostrophes et `&`. Ne pas insérer de HTML ou d'entités telles que `&amp;` : le rendu échappe déjà les valeurs. Le libellé `label` ne détermine pas le filtre ; c'est `category` qui le fait.
 
+### Informations facultatives et vérifiées
+
+| Champ         | Valeur et effet                                                                                               |
+| ------------- | ------------------------------------------------------------------------------------------------------------- |
+| `city`        | Commune réelle du chantier ; chaîne non vide, correspondance exacte avec `cities.json` pour le maillage local |
+| `context`     | État initial / problème à résoudre, sans HTML                                                                 |
+| `duration`    | Durée réellement connue, sous forme de texte                                                                  |
+| `surface`     | Surface réellement connue avec unité, sous forme de texte                                                     |
+| `materials`   | Tableau de noms de matériaux non vides                                                                        |
+| `workDetails` | Tableau de paragraphes non vides détaillant les travaux réalisés                                              |
+
+Omettre une information inconnue ; ne pas écrire une valeur vide ni déduire la commune de l’adresse de l’entreprise. Les photos et descriptions déjà présentes suffisent pour générer la fiche. La date du chantier n’est pas présentée comme une date de publication.
+
 ### Catégories autorisées
 
 | `category`   | Domaine               |
@@ -89,17 +102,19 @@ Les cinq premiers champs sont des chaînes obligatoires non vides. Écrire les t
 
 Choisir la catégorie principale d'un chantier mixte. Il n'y a qu'une catégorie par entrée. Pour créer une nouvelle catégorie, voir [Maintenance](maintenance.md) : cela nécessite de modifier aussi la validation, les filtres et les tests.
 
-Ne pas ajouter `id`, `mode`, `cat`, `copy`, `before`, `after`, `gallery` ou `images` dans le JSON : le build les calcule. Les propriétés supplémentaires ne servent pas à piloter l'affichage.
+Ne pas ajouter `id`, `file`, `mode`, `cat`, `copy`, `before`, `after`, `gallery` ou `images` dans le JSON : le build les calcule. Seules les métadonnées facultatives documentées ci-dessus enrichissent la fiche.
 
 ## 4. Comprendre où le chantier apparaîtra
 
 L'ordre des objets dans le JSON est libre : le build les trie par date décroissante.
 
-| Page                | Comportement                                                                                          |
-| ------------------- | ----------------------------------------------------------------------------------------------------- |
-| `realisations.html` | Tous les chantiers, du plus récent au plus ancien ; catégorie disponible dans le filtre correspondant |
-| `index.html`        | Comparateur le plus récent ; en l'absence de tout comparateur, chantier le plus récent en galerie     |
-| Pages locales       | Les trois chantiers les plus récents, sans association à une ville ou à une catégorie particulière    |
+| Page                | Comportement                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `realisations.html` | Tous les chantiers, du plus récent au plus ancien ; catégorie disponible dans le filtre correspondant        |
+| `index.html`        | Comparateur le plus récent ; en l'absence de tout comparateur, chantier le plus récent en galerie            |
+| Pages locales       | Jusqu’à trois chantiers dont `city` correspond exactement ; sinon trois exemples récents du portfolio global |
+
+Les pages de prestations proposent jusqu’à trois chantiers de leur catégorie (ou des exemples généraux si aucun ne correspond). La fiche individuelle reprend toutes les photographies, les textes et les informations facultatives renseignées. Les cartes de l’accueil, des villes et du portfolio pointent vers cette fiche.
 
 Ajouter une galerie plus récente ne remplace donc pas le comparateur de l'accueil. Ne pas changer artificiellement la date pour forcer une mise en avant. Si une sélection manuelle est demandée, faire évoluer explicitement `renderHomeProject()` dans `scripts/render-projects.mjs` et documenter la nouvelle règle.
 
@@ -123,7 +138,8 @@ Contrôler les points suivants :
 - Son filtre l'affiche ; les autres catégories le masquent.
 - Le comparateur, s'il existe, déplace correctement les vues avant/après.
 - Les images de galerie s'ouvrent dans la visionneuse et se ferment avec Échap.
-- L'accueil et les pages locales affichent la sélection attendue.
+- L’accueil et les pages locales affichent la sélection attendue.
+- La fiche `realisation-YYYY-MM-DD.html` est accessible, son lien figure dans le portfolio et son URL ainsi que ses photos figurent dans `dist/sitemap.xml`.
 - Le cadrage et la lisibilité conviennent sur desktop et mobile.
 - Le diff Git contient seulement les métadonnées, les photos voulues et les éventuels changements documentaires ; aucun fichier de `dist/`.
 
@@ -147,6 +163,8 @@ Un build réussi ne publie rien à lui seul. Livrer les sources selon le workflo
 | Passer d'un comparateur à une galerie | Conserver au moins une photo numérotée et retirer les deux fichiers de la paire                                    |
 | Corriger la date                      | Modifier la date dans le JSON et renommer le dossier avec la même valeur ; vérifier les sélections et l'unicité    |
 | Retirer un chantier                   | Retirer son entrée et, si ses photos ne sont plus utilisées ailleurs, son dossier ; reconstruire                   |
+
+Après publication, corriger une date change aussi l’URL `realisation-YYYY-MM-DD.html`. Prévoir une redirection permanente depuis l’ancienne URL sur l’hébergement et vérifier qu’elle aboutit à la nouvelle fiche. Le build n’en crée pas automatiquement.
 
 Avant de supprimer un dossier, rechercher son chemin dans le dépôt. Retirer seulement l'entrée masque la carte mais laisse les photos copiées et accessibles dans la sortie publiée. Retirer seulement le dossier fait échouer le build.
 

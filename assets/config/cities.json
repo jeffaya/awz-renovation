@@ -9,10 +9,16 @@
     "heroAlt": "Angers, patrimoine local",
     "heroTitle": "Rénovation & maçonnerie à Angers",
     "heroCopy": "Un interlocuteur unique pour vos projets de rénovation et de maçonnerie à Angers et dans ses environs.",
-    "localTitle": "Des travaux durables à Angers",
+    "localTitle": "Préparer une rénovation à Angers depuis Avoine",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "Pour votre projet à Angers, AWZ-Rénovation est votre interlocuteur pour la rénovation intérieure, la maçonnerie et les finitions. L’entreprise est basée à Avoine : précisez l’adresse du chantier et la période souhaitée pour confirmer les conditions du déplacement.",
+      "Pour une rénovation d’appartement ou de maison, indiquez les pièces concernées, l’occupation des lieux et les possibilités d’accès aux matériaux. Un plan ou un croquis et des photos des surfaces à reprendre permettent de préparer un échange concret.",
+      "Les prestations ci-dessous détaillent les informations utiles avant un devis. Les réalisations présentées plus bas illustrent le travail d’AWZ ; leur localisation n’est indiquée que lorsqu’elle est documentée."
+    ],
+    "serviceFiles": [
+      "renovation-interieure.html",
+      "maconnerie-gros-oeuvre.html",
+      "pierre-taille-finitions.html"
     ]
   },
   {
@@ -25,10 +31,16 @@
     "heroAlt": "Azay-le-Rideau, patrimoine local",
     "heroTitle": "Rénovation à Azay-le-Rideau",
     "heroCopy": "Des interventions adaptées au patrimoine local : pierre, façades, rénovation intérieure et maçonnerie.",
-    "localTitle": "Des travaux durables à Azay-le-Rideau",
+    "localTitle": "Pierre et rénovation : préparer votre chantier à Azay-le-Rideau",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "AWZ-Rénovation accompagne les demandes à Azay-le-Rideau pour la pierre, les façades et la rénovation intérieure. L’artisan, Antony Wouenzell, est basé à Avoine et reste votre interlocuteur pour préciser les travaux.",
+      "Si votre projet concerne un mur ancien, commencez par identifier les pierres visibles, les joints, les revêtements existants et les détails à conserver. Des photos de près et une vue générale permettent de comprendre les reprises envisagées.",
+      "Pour associer restauration de façade et travaux intérieurs, décrivez les deux parties du projet dès le premier contact. Le périmètre et les possibilités d’intervention sont confirmés avec l’artisan avant le chantier."
+    ],
+    "serviceFiles": [
+      "restauration-pierre-tuffeau.html",
+      "ravalement-facade.html",
+      "renovation-interieure.html"
     ]
   },
   {
@@ -41,10 +53,16 @@
     "heroAlt": "Langeais, patrimoine local",
     "heroTitle": "Rénovation du bâti à Langeais",
     "heroCopy": "Maçonnerie, façades et rénovation du bâti ancien à Langeais avec une attention particulière portée aux matériaux existants.",
-    "localTitle": "Des travaux durables à Langeais",
+    "localTitle": "Façades et maçonnerie à Langeais : partir de l’existant",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "Pour un chantier à Langeais, AWZ-Rénovation propose la maçonnerie, la rénovation et les reprises de pierre ou de façade. L’entreprise est installée à Avoine ; la localisation précise et l’accès au bâtiment permettent de préparer le déplacement.",
+      "Une façade à reprendre, un mur à restaurer et une ouverture à créer correspondent à des besoins différents. Décrivez chaque ouvrage séparément, avec ses dimensions approximatives, les désordres visibles et le résultat attendu.",
+      "Les fiches de prestations et les chantiers photographiés vous aident à préparer cette description. Les solutions retenues dépendent de l’état des supports et des contraintes du bâtiment, à examiner avec l’artisan."
+    ],
+    "serviceFiles": [
+      "maconnerie-gros-oeuvre.html",
+      "ravalement-facade.html",
+      "restauration-pierre-tuffeau.html"
     ]
   },
   {
@@ -57,10 +75,16 @@
     "heroAlt": "Loudun, patrimoine local",
     "heroTitle": "Rénovation & maçonnerie à Loudun",
     "heroCopy": "Pour vos travaux à Loudun : rénovation, maçonnerie, façades et amélioration durable de l’habitat.",
-    "localTitle": "Des travaux durables à Loudun",
+    "localTitle": "Votre projet de maison ou d’extérieur à Loudun",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "AWZ-Rénovation intervient sur des projets de rénovation, de maçonnerie et de façade à Loudun. Depuis Avoine, Antony Wouenzell échange directement avec vous pour définir les travaux et confirmer les modalités d’intervention.",
+      "Pour un extérieur, précisez les surfaces, les niveaux et les accès depuis la rue ou le jardin. Pour une façade, des photos de chaque face concernée et des détails abîmés facilitent la préparation du devis.",
+      "Vous pouvez réunir les demandes de rénovation intérieure et d’aménagement extérieur dans un même échange. Indiquez les priorités et les espaces qui doivent rester accessibles pendant les travaux."
+    ],
+    "serviceFiles": [
+      "dalles-terrasses.html",
+      "ravalement-facade.html",
+      "renovation-interieure.html"
     ]
   },
   {
@@ -73,10 +97,16 @@
     "heroAlt": "Chinon, patrimoine local",
     "heroTitle": "Maçonnerie & rénovation à Chinon",
     "heroCopy": "Un savoir-faire local pour vos travaux de maçonnerie, rénovation, façades et pierre, dans le respect du bâti chinonais.",
-    "localTitle": "Des travaux durables à Chinon",
+    "localTitle": "Un maçon basé à Avoine pour votre projet à Chinon",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "Vous recherchez un artisan pour un mur, une ouverture ou une rénovation à Chinon ? AWZ-Rénovation, basée à Avoine, propose la maçonnerie générale ainsi que les travaux de pierre, de tuffeau et de façade.",
+      "Pour une transformation du bâti existant, précisez les volumes à conserver, les supports à reprendre et les éventuels éléments porteurs. Les photos donnent un premier aperçu ; les contraintes de structure doivent être examinées avant de définir les travaux.",
+      "Si votre demande porte plutôt sur des joints ou une façade en pierre, les pages dédiées décrivent les informations à transmettre. La galerie permet également de consulter des exemples documentés de reprises et de restaurations."
+    ],
+    "serviceFiles": [
+      "maconnerie-gros-oeuvre.html",
+      "restauration-pierre-tuffeau.html",
+      "ravalement-facade.html"
     ]
   },
   {
@@ -89,10 +119,16 @@
     "heroAlt": "Noyant, patrimoine local",
     "heroTitle": "Rénovation & maçonnerie à Noyant",
     "heroCopy": "AWZ-Rénovation intervient à Noyant pour les projets de rénovation, maçonnerie et aménagement du bâti.",
-    "localTitle": "Des travaux durables à Noyant",
+    "localTitle": "Organiser des travaux de rénovation dans le secteur de Noyant",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "AWZ-Rénovation présente des prestations de rénovation, de maçonnerie et de façade pour le secteur de Noyant. L’entreprise est basée à Avoine : indiquez la commune et l’adresse exactes pour confirmer les conditions d’intervention.",
+      "Pour une maison comprenant plusieurs espaces à rénover, listez les pièces concernées et l’ordre de priorité des travaux. Mentionnez les zones occupées, l’accès au chantier et les éléments existants que vous souhaitez garder.",
+      "Pour les travaux extérieurs, ajoutez des vues d’ensemble, les dimensions approximatives et les possibilités d’accès aux matériaux. Ces informations permettent de préparer la demande sans présumer de l’état des supports."
+    ],
+    "serviceFiles": [
+      "renovation-interieure.html",
+      "maconnerie-gros-oeuvre.html",
+      "ravalement-facade.html"
     ]
   },
   {
@@ -105,10 +141,16 @@
     "heroAlt": "Saumur, patrimoine local",
     "heroTitle": "Rénovation & maçonnerie à Saumur",
     "heroCopy": "Votre artisan pour vos projets de rénovation, maçonnerie et pierre de tuffeau à Saumur et dans ses environs.",
-    "localTitle": "Des travaux durables à Saumur",
+    "localTitle": "Pierre, tuffeau et rénovation pour votre chantier à Saumur",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "AWZ-Rénovation accompagne les projets de rénovation à Saumur depuis Avoine : restauration de pierre et de tuffeau, maçonnerie, façades et transformation intérieure. Votre demande est étudiée directement avec Antony Wouenzell.",
+      "Pour une façade en pierre, précisez les zones à nettoyer ou à reprendre, l’état des joints et les éléments décoratifs à conserver. Pour un intérieur, indiquez les sols, surfaces et volumes concernés, ainsi que les contraintes d’occupation.",
+      "Les réalisations du portfolio montrent des travaux de pierre et des transformations d’intérieurs. Consultez les fiches détaillées pour décrire le résultat recherché, puis transmettez la localisation et des photos de votre propre chantier."
+    ],
+    "serviceFiles": [
+      "restauration-pierre-tuffeau.html",
+      "ravalement-facade.html",
+      "renovation-interieure.html"
     ]
   },
   {
@@ -121,10 +163,16 @@
     "heroAlt": "Richelieu, patrimoine local",
     "heroTitle": "Maçonnerie & rénovation à Richelieu",
     "heroCopy": "AWZ-Rénovation accompagne les projets de rénovation, maçonnerie et restauration de façades à Richelieu.",
-    "localTitle": "Des travaux durables à Richelieu",
+    "localTitle": "Décrire votre projet de façade ou de maçonnerie à Richelieu",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "À Richelieu, les prestations proposées par AWZ-Rénovation comprennent la maçonnerie, le ravalement et les reprises de pierre. L’entreprise reste basée à Avoine, avec un contact direct pour préparer le projet et le déplacement.",
+      "Pour un mur ou une façade, indiquez la hauteur, la surface et les conditions d’accès. Si des moulures, corniches ou autres détails doivent être conservés, joignez des photos permettant de les situer dans l’ensemble du bâtiment.",
+      "Vous trouverez ci-dessous les prestations liées à ces travaux. Les photographies des réalisations montrent les interventions documentées par AWZ, tandis que le devis définit les reprises adaptées à votre propre ouvrage."
+    ],
+    "serviceFiles": [
+      "ravalement-facade.html",
+      "pierre-taille-finitions.html",
+      "maconnerie-gros-oeuvre.html"
     ]
   },
   {
@@ -137,10 +185,16 @@
     "heroAlt": "Tours, patrimoine local",
     "heroTitle": "Maçonnerie & rénovation à Tours",
     "heroCopy": "AWZ-Rénovation intervient à Tours pour vos projets de maçonnerie, transformation intérieure et rénovation de maisons.",
-    "localTitle": "Des travaux durables à Tours",
+    "localTitle": "Préparer une rénovation intérieure ou de maçonnerie à Tours",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "AWZ-Rénovation propose à Tours des travaux de rénovation intérieure, de maçonnerie et de façade. Antony Wouenzell est basé à Avoine ; les modalités du chantier et les disponibilités sont à confirmer lors de votre prise de contact.",
+      "Pour un chantier en maison ou en appartement, précisez l’étage, l’accès aux pièces et les possibilités de livraison. Décrivez les surfaces à reprendre, les modifications de volumes et les finitions attendues, avec des photos de l’existant.",
+      "La demande peut porter sur une pièce ou sur une transformation plus large. Préparez les dimensions approximatives et votre ordre de priorité afin de définir un périmètre de travaux clair avec l’artisan."
+    ],
+    "serviceFiles": [
+      "renovation-interieure.html",
+      "maconnerie-gros-oeuvre.html",
+      "pierre-taille-finitions.html"
     ]
   },
   {
@@ -153,10 +207,16 @@
     "heroAlt": "Avoine, patrimoine local",
     "heroTitle": "Restauration pierre & tuffeau à Avoine",
     "heroCopy": "Au cœur du Véron, AWZ-Rénovation accompagne vos projets de restauration de pierre, tuffeau, façades et rénovation de l’habitat.",
-    "localTitle": "Des travaux durables à Avoine",
+    "localTitle": "AWZ-Rénovation, votre artisan basé à Avoine",
     "localParagraphs": [
-      "Nous intervenons sur le bâti ancien comme sur les projets plus contemporains, avec une attention particulière portée aux supports existants, à la qualité des finitions et à la durabilité des ouvrages.",
-      "Du premier échange à la réalisation, vous gardez un interlocuteur unique pour comprendre le chantier et choisir des solutions adaptées."
+      "AWZ-Rénovation est installée au 2 rue du Gros Chillou, à Avoine. Antony Wouenzell est votre interlocuteur pour les travaux de maçonnerie, de rénovation et de restauration de pierre ou de tuffeau.",
+      "Un mur dont les joints se dégradent, une façade à remettre en valeur ou une pièce à transformer : décrivez les ouvrages concernés et les éléments à conserver. Le portfolio présente des exemples de reprises de pierre, de façades et de rénovations intérieures.",
+      "Pour préparer un devis, transmettez l’adresse, quelques photos et les dimensions approximatives. Le bouton de demande ouvre votre messagerie ; vous pouvez aussi joindre directement l’artisan au numéro affiché sur cette page."
+    ],
+    "serviceFiles": [
+      "restauration-pierre-tuffeau.html",
+      "ravalement-facade.html",
+      "renovation-interieure.html"
     ]
   }
 ]

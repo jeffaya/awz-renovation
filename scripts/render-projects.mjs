@@ -43,7 +43,7 @@ function emojiFor(text) {
   return "✓";
 }
 function featureProject(p, mailto) {
-  return `<article class="featured-shell" data-category="${p.cat}"><div class="featured-media">${mediaMarkup(p)}${extraGallery(p)}</div><div class="featured-copy"><p class="project-kicker">${p.label}</p><h2 class="font-serif-display text-3xl lg:text-4xl text-slate-900">${p.title}</h2><div class="featured-rule"></div><p class="mt-5 text-slate-600 leading-7">${p.copy}</p><div class="mt-6 space-y-3">${p.points.map((x) => `<div class="feature-point"><span aria-hidden="true">${emojiFor(x)}</span><p>${x}</p></div>`).join("")}</div><a href="${escapeHtml(mailto)}" class="btn-with-icon mt-8 rounded-full bg-awz px-6 py-3.5 font-semibold text-white shadow-sm">Demander un devis <i class="bi bi-arrow-right icon-inline" aria-hidden="true"></i></a></div></article>`;
+  return `<article class="featured-shell" data-category="${p.cat}"><div class="featured-media">${mediaMarkup(p)}${extraGallery(p)}</div><div class="featured-copy"><p class="project-kicker">${p.label}</p><h2 class="font-serif-display text-3xl lg:text-4xl text-slate-900">${p.title}</h2><a href="${p.file}" class="mt-4 inline-block font-semibold text-awz underline underline-offset-4">Voir le détail du chantier</a><div class="featured-rule"></div><p class="mt-5 text-slate-600 leading-7">${p.copy}</p><div class="mt-6 space-y-3">${p.points.map((x) => `<div class="feature-point"><span aria-hidden="true">${emojiFor(x)}</span><p>${x}</p></div>`).join("")}</div><a href="${escapeHtml(mailto)}" class="btn-with-icon mt-8 rounded-full bg-awz px-6 py-3.5 font-semibold text-white shadow-sm">Demander un devis <i class="bi bi-arrow-right icon-inline" aria-hidden="true"></i></a></div></article>`;
 }
 
 function escapedProject(project) {
@@ -59,6 +59,11 @@ export function renderFeaturedProjects(projects, mailto) {
   return projects.map((project) => featureProject(escapedProject(project), mailto)).join("");
 }
 
+export function renderProjectMedia(project) {
+  const p = escapedProject(project);
+  return mediaMarkup(p) + extraGallery(p);
+}
+
 export function renderHomeProject(projects) {
   const selected = projects.find((project) => project.mode === "compare") || projects[0];
   if (!selected) return "";
@@ -67,7 +72,7 @@ export function renderHomeProject(projects) {
     p.mode === "compare"
       ? `<div data-comparison class="home-comparison h-72 sm:h-96 lg:h-[480px] bg-stone-200"><img class="home-after" src="${p.after}" alt="Après ${p.title}" loading="lazy" decoding="async"><div data-comparison-before class="home-before"><img src="${p.before}" alt="Avant ${p.title}" loading="lazy" decoding="async"></div><input type="range" min="0" max="100" value="50" aria-label="Comparer avant et après"><span class="home-label home-before-label">AVANT</span><span class="home-label home-after-label">APRÈS</span><span data-comparison-handle class="home-handle"><i class="bi bi-arrow-left-right"></i></span></div>`
       : galleryMarkup(p, "h-72 sm:h-96 lg:h-[480px]");
-  return `<a href="realisations.html" class="block group"><article class="w-full overflow-hidden rounded-3xl bg-white shadow-sm transition group-hover:shadow-lg">${media}<div class="p-5 sm:p-7 flex items-center justify-between gap-5"><div><h3 class="text-xl sm:text-2xl font-semibold">${p.title}</h3><p class="mt-1 text-sm text-slate-600">${p.copy}</p></div><span class="shrink-0 inline-flex h-11 w-11 items-center justify-center rounded-full bg-awz text-white"><i class="bi bi-arrow-right"></i></span></div></article></a>`;
+  return `<a href="${p.file}" class="block group"><article class="w-full overflow-hidden rounded-3xl bg-white shadow-sm transition group-hover:shadow-lg">${media}<div class="p-5 sm:p-7 flex items-center justify-between gap-5"><div><h3 class="text-xl sm:text-2xl font-semibold">${p.title}</h3><p class="mt-1 text-sm text-slate-600">${p.copy}</p></div><span class="shrink-0 inline-flex h-11 w-11 items-center justify-center rounded-full bg-awz text-white"><i class="bi bi-arrow-right"></i></span></div></article></a>`;
 }
 
 export function renderCityProjects(projects) {
@@ -75,7 +80,7 @@ export function renderCityProjects(projects) {
     .slice(0, 3)
     .map((project) => {
       const p = escapedProject(project);
-      return `<a href="realisations.html" class="group overflow-hidden rounded-2xl border border-stone-200 bg-white"><img src="${p.after || p.images[0]}" alt="${p.title} par AWZ-Rénovation" loading="lazy" decoding="async" class="h-48 w-full object-cover"><div class="p-4"><p class="text-xs uppercase tracking-[.16em] text-stone-500">${p.label}</p><h3 class="mt-1 font-semibold text-awz">${p.title}</h3></div></a>`;
+      return `<a href="${p.file}" class="group overflow-hidden rounded-2xl border border-stone-200 bg-white"><img src="${p.after || p.images[0]}" alt="${p.title} par AWZ-Rénovation" loading="lazy" decoding="async" class="h-48 w-full object-cover"><div class="p-4"><p class="text-xs uppercase tracking-[.16em] text-stone-500">${p.label}</p><h3 class="mt-1 font-semibold text-awz">${p.title}</h3></div></a>`;
     })
     .join("");
 }
