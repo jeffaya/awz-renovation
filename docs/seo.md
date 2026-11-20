@@ -22,18 +22,14 @@ Les données structurées relient l’entreprise (`HomeAndConstructionBusiness`)
 
 ## Domaine de production
 
-Le site utilise `https://awz-renovation.com`, sans `www`. Le build lit `siteUrl` dans `assets/config/site.json` pour générer les liens canoniques, les métadonnées Open Graph, le JSON-LD, le sitemap des pages et des images ainsi que la déclaration de sitemap dans `robots.txt`.
+Le site utilise `https://awz-renovation.fr`, sans `www`. Le build lit `siteUrl` dans `assets/config/site.json` pour générer les liens canoniques, les métadonnées Open Graph, le JSON-LD, le sitemap des pages et des images ainsi que la déclaration de sitemap dans `robots.txt`.
 
-Pour la mise en ligne du domaine :
+Le déploiement du site et le rattachement du domaine se font séparément :
 
-1. Activer la zone `awz-renovation.com` dans le compte Cloudflare qui héberge le Worker.
-2. Retirer toute ancienne surcharge `SITE_URL` du build de production et utiliser le mode indexable (par défaut). Construire avec `npm run build`, puis déployer avec la configuration Wrangler du dépôt.
-3. Vérifier que l’accueil, une prestation et une réalisation répondent sur le domaine avec un certificat HTTPS valide. Contrôler leurs liens canoniques, `/robots.txt` et `/sitemap.xml`.
-4. Vérifier la propriété du domaine dans Google Search Console et Bing Webmaster Tools et y soumettre `https://awz-renovation.com/sitemap.xml`. Mettre à jour l’adresse du site sur les profils publics et dans les annuaires.
-
-Wrangler rattache le domaine au Worker et maintient l’ancienne adresse `awz-renovation.jf-seignemorte.workers.dev`. Sur cette adresse, le Worker renvoie un HTTP 301 vers le même chemin sur le domaine principal, en conservant les paramètres. Les URL de prévisualisation Cloudflare restent accessibles directement. Le Worker traite chaque requête avant les fichiers statiques, y compris sur le domaine principal.
-
-Le domaine historique `awz-renovation.fr` dépend d’un tiers. Une redirection depuis ce domaine doit être configurée par son gestionnaire.
+1. Construire avec `npm run build` et déployer avec `npx wrangler deploy`. En production, retirer toute surcharge de `SITE_URL` pour utiliser le domaine configuré et conserver le mode indexable par défaut.
+2. Vérifier l’accueil et `/contact.html` sur `https://awz-renovation.jf-seignemorte.workers.dev`. Cette adresse sert directement les pages, y compris pendant l’activation du domaine.
+3. Une fois la zone `awz-renovation.fr` active dans le compte du Worker, ouvrir **Workers & Pages → awz-renovation → Settings → Domains & Routes → Add → Custom Domain**, puis saisir `awz-renovation.fr`. La configuration Wrangler laisse la gestion des domaines au tableau de bord.
+4. Vérifier sur le domaine en HTTPS l’accueil, les liens canoniques, `/robots.txt` et `/sitemap.xml`. Soumettre `https://awz-renovation.fr/sitemap.xml` dans Google Search Console et Bing Webmaster Tools.
 
 ## URLs HTML et Cloudflare
 
