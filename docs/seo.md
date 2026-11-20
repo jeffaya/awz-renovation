@@ -20,28 +20,20 @@ Pour enrichir une fiche chantier, ajouter uniquement les informations connues : 
 
 Les données structurées relient l’entreprise (`HomeAndConstructionBusiness`), le site (`WebSite`), les pages, les prestations (`Service`), les chantiers (`CreativeWork`) et les fils d’Ariane. Elles reprennent les contenus visibles. Le sitemap contient toutes les pages indexables et les images des fiches chantier. Il n’annonce pas de date de dernière modification artificielle.
 
-## Choisir le domaine à indexer
+## Domaine de production
 
-L’origine par défaut reste `https://awz-renovation.jf-seignemorte.workers.dev`, dans `assets/config/site.json`. L’ancien domaine `awz-renovation.fr`, que le propriétaire indique ne plus maîtriser, n’est plus une destination de configuration. Aucune nouvelle adresse n’a été supposée.
+Le site utilise `https://awz-renovation.com`, sans `www`. Le build lit `siteUrl` dans `assets/config/site.json` pour générer les liens canoniques, les métadonnées Open Graph, le JSON-LD, le sitemap des pages et des images ainsi que la déclaration de sitemap dans `robots.txt`.
 
-Une origine contrôlée peut remplacer la configuration au build. Exemple illustratif, à remplacer par le domaine effectivement relié à l’hébergement :
+Pour la mise en ligne du domaine :
 
-```bash
-SITE_URL=https://nouveau-domaine.example SITE_INDEXABLE=true npm run build
-```
+1. Activer la zone `awz-renovation.com` dans le compte Cloudflare qui héberge le Worker.
+2. Retirer toute ancienne surcharge `SITE_URL` du build de production et utiliser le mode indexable (par défaut). Construire avec `npm run build`, puis déployer avec la configuration Wrangler du dépôt.
+3. Vérifier que l’accueil, une prestation et une réalisation répondent sur le domaine avec un certificat HTTPS valide. Contrôler leurs liens canoniques, `/robots.txt` et `/sitemap.xml`.
+4. Vérifier la propriété du domaine dans Google Search Console et Bing Webmaster Tools et y soumettre `https://awz-renovation.com/sitemap.xml`. Mettre à jour l’adresse du site sur les profils publics et dans les annuaires.
 
-`SITE_URL` doit être une origine HTTP(S), sans chemin, identifiants, paramètres ni fragment. Elle s’applique aux canonical, Open Graph, JSON-LD, sitemap et à la déclaration de sitemap dans `robots.txt`. Pour un changement permanent, mettre aussi à jour `siteUrl` dans le JSON afin que le build local reste cohérent.
+Wrangler rattache le domaine au Worker et maintient l’ancienne adresse `awz-renovation.jf-seignemorte.workers.dev`. Sur cette adresse, le Worker renvoie un HTTP 301 vers le même chemin sur le domaine principal, en conservant les paramètres. Les URL de prévisualisation Cloudflare restent accessibles directement. Le Worker traite chaque requête avant les fichiers statiques, y compris sur le domaine principal.
 
-Avant de publier sur un nouveau domaine :
-
-1. Relier le domaine à l’hébergement et vérifier son certificat HTTPS.
-2. Choisir l’hôte principal, avec ou sans `www`, et configurer les redirections permanentes depuis les autres hôtes contrôlés vers la même page du domaine principal.
-3. Construire avec la bonne origine et `SITE_INDEXABLE=true`, puis publier `dist/`.
-4. Vérifier sur le domaine public l’accueil, une prestation et une réalisation, leurs canonical, le JSON-LD, `/robots.txt` et `/sitemap.xml`.
-5. Vérifier la propriété dans Google Search Console et Bing Webmaster Tools, puis soumettre le sitemap du nouveau domaine.
-6. Corriger l’adresse du site dans Google Business Profile, les profils publics, les annuaires et les autres liens que le propriétaire peut modifier.
-
-Une redirection depuis l’ancien domaine nécessite d’en contrôler l’hébergement ou la configuration. Une modification de ce dépôt ne peut pas rediriger un domaine géré par un tiers. La migration ne transfère donc pas automatiquement les signaux de l’ancien site. Les changements de DNS, de comptes externes et de liens d’annuaires sont des actions distinctes du build.
+Le domaine historique `awz-renovation.fr` dépend d’un tiers. Une redirection depuis ce domaine doit être configurée par son gestionnaire.
 
 ## URLs HTML et Cloudflare
 

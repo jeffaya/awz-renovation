@@ -130,7 +130,7 @@ Il n'y a pas de script npm `deploy` ni de dépendance Wrangler dans le dépôt. 
 
 ### Domaine et SEO
 
-Suivre le [guide SEO et recherches IA](seo.md). `assets/config/site.json` → `siteUrl` reste l’origine par défaut, actuellement `https://awz-renovation.jf-seignemorte.workers.dev`. `SITE_URL` permet de choisir une autre origine au build ; cette valeur alimente canonical, Open Graph, JSON-LD, sitemap et robots. Elle ne doit contenir aucun chemin, identifiant, paramètre ou fragment.
+Suivre le [guide SEO et recherches IA](seo.md). Le domaine de production est `https://awz-renovation.com`. Il est déclaré dans `assets/config/site.json` pour le build et dans `wrangler.jsonc` pour le routage Cloudflare. Retirer toute ancienne surcharge `SITE_URL` du build de production. Pour un aperçu, cette variable permet de choisir une autre origine HTTP(S).
 
 Le build est indexable par défaut. Un build de prévisualisation doit utiliser `SITE_INDEXABLE=false` : les pages portent `noindex, follow`, le sitemap est vide et `robots.txt` reste ouvert pour permettre aux moteurs de lire la directive. Ne pas utiliser ce réglage sur le site public à indexer.
 

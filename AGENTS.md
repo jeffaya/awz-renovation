@@ -6,7 +6,7 @@ Ce fichier s'applique à tout le dépôt. Commencer ici, puis lire le guide corr
 
 Site vitrine français d'une entreprise de rénovation. « Ajouter un projet » signifie généralement **ajouter un chantier au portfolio des réalisations**, pas créer une nouvelle application.
 
-Le site est statique : HTML et JSON sources, génération avec Node.js, CSS Tailwind compilée au build et JavaScript natif en modules pour les interactions. Aucun framework applicatif, base de données, CMS ou backend de contact. La publication porte uniquement sur `dist/`.
+Le site est statique : HTML et JSON sources, génération avec Node.js, CSS Tailwind compilée au build et JavaScript natif en modules pour les interactions. Aucun framework applicatif, base de données, CMS ou backend de contact. Wrangler publie les fichiers statiques de `dist/` et utilise `worker.mjs` pour rediriger l’ancien hôte Cloudflare.
 
 ## Parcours de lecture
 
