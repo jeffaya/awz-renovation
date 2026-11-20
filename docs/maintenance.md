@@ -130,7 +130,7 @@ Il n'y a pas de script npm `deploy` ni de dépendance Wrangler dans le dépôt. 
 
 ### Domaine et SEO
 
-Suivre le [guide SEO et recherches IA](seo.md). Le domaine de production est `https://awz-renovation.com`. Il est déclaré dans `assets/config/site.json` pour le build et dans `wrangler.jsonc` pour le routage Cloudflare. Retirer toute ancienne surcharge `SITE_URL` du build de production. Pour un aperçu, cette variable permet de choisir une autre origine HTTP(S).
+Suivre le [guide SEO et recherches IA](seo.md). Le domaine de production est `https://awz-renovation.fr`. Le build lit son adresse dans `assets/config/site.json`. Le rattachement au Worker se fait dans le tableau de bord Cloudflare après activation de la zone. Retirer toute ancienne surcharge `SITE_URL` du build de production. Pour un aperçu, cette variable permet de choisir une autre origine HTTP(S).
 
 Le build est indexable par défaut. Un build de prévisualisation doit utiliser `SITE_INDEXABLE=false` : les pages portent `noindex, follow`, le sitemap est vide et `robots.txt` reste ouvert pour permettre aux moteurs de lire la directive. Ne pas utiliser ce réglage sur le site public à indexer.
 

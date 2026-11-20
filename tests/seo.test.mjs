@@ -19,6 +19,11 @@ before(() => {
 });
 after(() => execFileSync(process.execPath, ["scripts/build.mjs"], { stdio: "pipe" }));
 
+test("the default production origin is the French domain", () => {
+  const config = JSON.parse(readFileSync("assets/config/site.json", "utf8"));
+  assert.equal(config.siteUrl, "https://awz-renovation.fr");
+});
+
 test("domain configuration rejects paths, credentials and invalid preview flags", () => {
   assert.equal(resolveSiteUrl("https://example.fr/"), "https://example.fr");
   for (const value of [
