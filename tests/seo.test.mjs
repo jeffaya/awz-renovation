@@ -39,6 +39,7 @@ test("all emitted pages use the selected domain and have discoverable local link
     const html = read(file);
     assert.doesNotMatch(html, /\{\{[A-Z_]+\}\}|awz-renovation\.fr|workers\.dev/);
     assert.equal((html.match(/<h1\b/g) ?? []).length, 1, file);
+    assert.doesNotMatch(html, /href="\/?index\.html(?:[#?"])/, file);
     const canonical = html.match(/rel="canonical"\s+href="([^"]+)"/)[1];
     assert.equal(canonical, `${origin}/${file === "index.html" ? "" : file}`, file);
     assert.match(html, /name="robots" content="index, follow, max-image-preview:large"/);
@@ -54,6 +55,14 @@ test("all emitted pages use the selected domain and have discoverable local link
     )) {
       const schema = JSON.parse(raw);
       assert.ok(schema["@graph"].some((entity) => entity["@id"] === `${origin}/#entreprise`));
+      const breadcrumbs = schema["@graph"].find((entity) => entity["@type"] === "BreadcrumbList");
+      if (breadcrumbs) {
+        assert.equal(breadcrumbs.itemListElement[0].item, origin + "/", file);
+        assert.ok(
+          breadcrumbs.itemListElement.every(({ item }) => !item.includes("/index.html")),
+          file,
+        );
+      }
     }
   }
 });

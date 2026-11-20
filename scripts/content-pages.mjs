@@ -82,8 +82,8 @@ export function renderService(service, projects, tokens) {
   const selected = projects.filter((project) => project.cat === service.category);
   const related = selected.length ? selected : projects;
   const breadcrumbs = [
-    { name: "Accueil", file: "index.html" },
-    { name: "Prestations", file: "index.html#services" },
+    { name: "Accueil", file: "/" },
+    { name: "Prestations", file: "/#services" },
     { name: service.name, file: service.file },
   ];
   const body = `<div class="mx-auto max-w-4xl px-4 sm:px-6 py-16 space-y-10">${service.sections
@@ -131,7 +131,7 @@ export function renderProject(project, tokens) {
   const images = projectImages(project);
   const title = `${project.title}${project.city ? ` à ${project.city}` : ""} | AWZ-Rénovation`;
   const breadcrumbs = [
-    { name: "Accueil", file: "index.html" },
+    { name: "Accueil", file: "/" },
     { name: "Réalisations", file: "realisations.html" },
     { name: project.title, file: project.file },
   ];
@@ -197,7 +197,7 @@ export function renderFaqPage(tokens) {
       image: "assets/images/brand/social-share.jpg",
       caption: "Maçonnerie, rénovation, pierre et tuffeau à Avoine et alentours.",
       breadcrumbs: [
-        { name: "Accueil", file: "index.html" },
+        { name: "Accueil", file: "/" },
         { name: "Questions fréquentes", file: "questions-frequentes.html" },
       ],
       body: `${renderFaq(faq)}<section class="mx-auto max-w-4xl px-4 sm:px-6 pt-12"><h2 class="font-serif-display text-2xl text-awz">En savoir plus sur chaque prestation</h2><div class="mt-5 flex flex-wrap gap-x-6 gap-y-3">${renderServiceLinks()}</div></section>`,

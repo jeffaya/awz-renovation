@@ -32,7 +32,7 @@ Les demandes de devis sont des liens `mailto:` avec un objet préparé. Il n'y a
 
 Modifier les textes propres à une page dans son `.html` à la racine. Modifier le menu, le footer et les autres fragments communs dans [templates/partials](../templates/partials/), puis reconstruire pour vérifier toutes les pages qui les utilisent.
 
-Le CTA du footer est dans `footer.html` et pointe vers `https://seignemorte.com`. Les listes de liens historiques vers les villes et les ancres restent écrites à la main ; les liens vers les prestations sont générés depuis `services.json`. Pour les liens manuels : préserver leurs destinations, notamment `index.html#…` pour rejoindre une section depuis une autre page.
+Le CTA du footer est dans `footer.html` et pointe vers `https://seignemorte.com`. Les listes de liens historiques vers les villes et les ancres restent écrites à la main ; les liens vers les prestations sont générés depuis `services.json`. Pour les liens manuels : préserver leurs destinations, notamment `/#…` pour rejoindre une section depuis une autre page.
 
 Pour ajouter un partial, l'enregistrer dans `scripts/pages.mjs` et insérer son token `PARTIAL_*` dans les pages concernées. Le build refuse les tokens majuscules laissés sans résolution.
 

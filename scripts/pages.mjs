@@ -27,7 +27,7 @@ export function renderPartials(text, values = {}) {
 
 export function renderCity(city, values = {}) {
   const breadcrumbs = [
-    { name: "Accueil", file: "index.html" },
+    { name: "Accueil", file: "/" },
     { name: "Zones d’intervention", file: "zones-intervention.html" },
     { name: city.city, file: city.file },
   ];

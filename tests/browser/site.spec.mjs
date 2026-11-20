@@ -70,8 +70,8 @@ test("menu closes with Escape, navigation and the desktop breakpoint", async ({ 
   await expect(page.locator("body")).not.toHaveClass(/no-scroll/);
   await page.setViewportSize({ width: 390, height: 844 });
   await button.click();
-  await page.locator('#mobile-menu a[href="index.html#services"]').click();
-  await expect(page).toHaveURL(/index.html#services$/);
+  await page.locator('#mobile-menu a[href="/#services"]').click();
+  await expect(page).toHaveURL(/\/#services$/);
   await expect(button).toHaveAttribute("aria-expanded", "false");
 });
 test("all project filters preserve cards and comparison positions", async ({ page }) => {
@@ -106,6 +106,19 @@ test("all project filters preserve cards and comparison positions", async ({ pag
   );
   await expect(page.locator("#projects-empty")).toBeHidden();
 });
+test("homepage loads only the hero image matching its viewport", async ({ page }) => {
+  const requested = [];
+  page.on("request", (request) => {
+    const { pathname } = new URL(request.url());
+    if (pathname.startsWith("/assets/images/site/hero/")) requested.push(pathname);
+  });
+  await page.goto("/");
+  const hero = page.locator("#accueil picture img");
+  await hero.evaluate((image) => image.decode());
+  const filename = page.viewportSize().width < 640 ? "renovation-mobile.webp" : "renovation.webp";
+  expect(requested).toEqual(["/assets/images/site/hero/" + filename]);
+});
+
 test("homepage slider can be used without opening the project link", async ({ page }) => {
   await page.goto("/index.html");
   const slider = page.locator("#home-project input");
