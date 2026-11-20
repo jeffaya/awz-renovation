@@ -126,6 +126,8 @@ Adapter les vérifications au risque réel. Une modification documentaire néces
 | Dossier à publier                   | `dist`                                          |
 | Configuration Cloudflare versionnée | `wrangler.jsonc` → `assets.directory: "./dist"` |
 
+Wrangler lance `npm run build` avant la publication des assets. Depuis un clone neuf avec les dépendances installées, `npx wrangler versions upload --dry-run` prépare un aperçu et `npx wrangler deploy --dry-run` prépare la production. Ces deux commandes reconstruisent `dist/` sans publier. Dans Workers Builds, le champ **Build command** peut rester vide puisque Wrangler exécute cette étape.
+
 Il n'y a pas de script npm `deploy` ni de dépendance Wrangler dans le dépôt. Le workflow GitHub Actions versionné exécute des vérifications ; il ne déploie pas le site. Une éventuelle intégration Git Cloudflare, sa branche de production et ses déclencheurs sont des réglages de l'hébergement à consulter séparément. Ne pas déduire de la seule présence du workflow qu'un merge publie automatiquement.
 
 ### Domaine et SEO
