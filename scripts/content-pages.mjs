@@ -2,7 +2,11 @@ import { readFileSync } from "node:fs";
 import { artisan, cities } from "./config.mjs";
 import { renderPartials } from "./pages.mjs";
 import { escapeHtml } from "./html.mjs";
-import { renderCityProjects, renderProjectMedia } from "./render-projects.mjs";
+import {
+  renderCityProjects,
+  renderProjectLightbox,
+  renderProjectMedia,
+} from "./render-projects.mjs";
 import { pageUrl, pageSchema, renderBreadcrumbs, renderFaq } from "./seo.mjs";
 
 export const services = JSON.parse(readFileSync("assets/config/services.json", "utf8"));
@@ -57,6 +61,7 @@ export function renderServiceLinks(files = services.map((service) => service.fil
 function renderDetail(
   { file, title, description, heading, intro, image, caption, body, breadcrumbs, entity },
   tokens,
+  lightbox = "",
 ) {
   return renderPartials(detailTemplate, {
     ...tokens,
@@ -75,6 +80,7 @@ function renderDetail(
     DETAIL_BREADCRUMBS: renderBreadcrumbs(breadcrumbs),
     DETAIL_SCHEMA: pageSchema({ file, title, description, breadcrumbs, entity }),
     DETAIL_BODY: body,
+    PROJECT_LIGHTBOX: lightbox,
   });
 }
 
@@ -82,8 +88,8 @@ export function renderService(service, projects, tokens) {
   const selected = projects.filter((project) => project.cat === service.category);
   const related = selected.length ? selected : projects;
   const breadcrumbs = [
-    { name: "Accueil", file: "index.html" },
-    { name: "Prestations", file: "index.html#services" },
+    { name: "Accueil", file: "/" },
+    { name: "Prestations", file: "/#services" },
     { name: service.name, file: service.file },
   ];
   const body = `<div class="mx-auto max-w-4xl px-4 sm:px-6 py-16 space-y-10">${service.sections
@@ -127,11 +133,11 @@ export function projectImages(project) {
 
 export function renderProject(project, tokens) {
   const service = services.find((entry) => entry.category === project.cat);
-  if (!service) throw new Error(`${project.id}: prestation introuvable`);
+  if (!service) throw new Error(`${project.date}: prestation introuvable`);
   const images = projectImages(project);
   const title = `${project.title}${project.city ? ` à ${project.city}` : ""} | AWZ-Rénovation`;
   const breadcrumbs = [
-    { name: "Accueil", file: "index.html" },
+    { name: "Accueil", file: "/" },
     { name: "Réalisations", file: "realisations.html" },
     { name: project.title, file: project.file },
   ];
@@ -181,6 +187,7 @@ export function renderProject(project, tokens) {
       },
     },
     tokens,
+    renderProjectLightbox([project]),
   );
 }
 
@@ -197,7 +204,7 @@ export function renderFaqPage(tokens) {
       image: "assets/images/brand/social-share.jpg",
       caption: "Maçonnerie, rénovation, pierre et tuffeau à Avoine et alentours.",
       breadcrumbs: [
-        { name: "Accueil", file: "index.html" },
+        { name: "Accueil", file: "/" },
         { name: "Questions fréquentes", file: "questions-frequentes.html" },
       ],
       body: `${renderFaq(faq)}<section class="mx-auto max-w-4xl px-4 sm:px-6 pt-12"><h2 class="font-serif-display text-2xl text-awz">En savoir plus sur chaque prestation</h2><div class="mt-5 flex flex-wrap gap-x-6 gap-y-3">${renderServiceLinks()}</div></section>`,

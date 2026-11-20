@@ -32,7 +32,7 @@ Les demandes de devis sont des liens `mailto:` avec un objet préparé. Il n'y a
 
 Modifier les textes propres à une page dans son `.html` à la racine. Modifier le menu, le footer et les autres fragments communs dans [templates/partials](../templates/partials/), puis reconstruire pour vérifier toutes les pages qui les utilisent.
 
-Le CTA du footer est dans `footer.html` et pointe vers `https://seignemorte.com`. Les listes de liens historiques vers les villes et les ancres restent écrites à la main ; les liens vers les prestations sont générés depuis `services.json`. Pour les liens manuels : préserver leurs destinations, notamment `index.html#…` pour rejoindre une section depuis une autre page.
+Le CTA du footer est dans `footer.html` et pointe vers `https://seignemorte.com`. Les listes de liens historiques vers les villes et les ancres restent écrites à la main ; les liens vers les prestations sont générés depuis `services.json`. Pour les liens manuels : préserver leurs destinations, notamment `/#…` pour rejoindre une section depuis une autre page.
 
 Pour ajouter un partial, l'enregistrer dans `scripts/pages.mjs` et insérer son token `PARTIAL_*` dans les pages concernées. Le build refuse les tokens majuscules laissés sans résolution.
 
@@ -41,7 +41,7 @@ Pour ajouter un partial, l'enregistrer dans `scripts/pages.mjs` et insérer son 
 Le contenu des villes vient de [assets/config/cities.json](../assets/config/cities.json). Le HTML commun est [templates/pages/city.html](../templates/pages/city.html). Ne pas créer à la main un HTML racine portant le même nom qu'une ville : le build refuserait cette collision.
 
 1. Copier une entrée existante du tableau et adapter tous ses contenus à la ville réellement desservie.
-2. Choisir un `file` unique en minuscules et tirets, terminé par `.html`. Ce champ détermine l'URL publiée. Le champ `slug` actuellement présent n'est pas utilisé par le rendu.
+2. Choisir un `file` unique en minuscules et tirets, terminé par `.html`. Ce champ détermine l'URL publiée.
 3. Renseigner `city`, `title`, `description`, `heroImage`, `heroAlt`, `heroTitle`, `heroCopy`, `localTitle` et le tableau `localParagraphs`. Ajouter `serviceFiles` avec les noms des prestations pertinentes dans `services.json`.
 4. Vérifier l'image, son texte alternatif et ses éventuels crédits. Un chemin local part de la racine des pages, par exemple `assets/images/site/...` ; une URL distante dépend du service qui l'héberge.
 5. Ajouter les liens de navigation nécessaires. Rechercher les listes existantes dans `zones-intervention.html`, `contact.html`, `templates/partials/footer.html` et `templates/partials/zones.html` ; elles ne sont pas synchronisées automatiquement avec le JSON.
@@ -130,7 +130,7 @@ Il n'y a pas de script npm `deploy` ni de dépendance Wrangler dans le dépôt. 
 
 ### Domaine et SEO
 
-Suivre le [guide SEO et recherches IA](seo.md). `assets/config/site.json` → `siteUrl` reste l’origine par défaut, actuellement `https://awz-renovation.jf-seignemorte.workers.dev`. `SITE_URL` permet de choisir une autre origine au build ; cette valeur alimente canonical, Open Graph, JSON-LD, sitemap et robots. Elle ne doit contenir aucun chemin, identifiant, paramètre ou fragment.
+Suivre le [guide SEO et recherches IA](seo.md). Le domaine de production est `https://awz-renovation.com`. Il est déclaré dans `assets/config/site.json` pour le build et dans `wrangler.jsonc` pour le routage Cloudflare. Retirer toute ancienne surcharge `SITE_URL` du build de production. Pour un aperçu, cette variable permet de choisir une autre origine HTTP(S).
 
 Le build est indexable par défaut. Un build de prévisualisation doit utiliser `SITE_INDEXABLE=false` : les pages portent `noindex, follow`, le sitemap est vide et `robots.txt` reste ouvert pour permettre aux moteurs de lire la directive. Ne pas utiliser ce réglage sur le site public à indexer.
 

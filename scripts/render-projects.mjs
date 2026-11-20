@@ -1,9 +1,19 @@
+import { readFileSync } from "node:fs";
 import { escapeHtml } from "./html.mjs";
+
+const lightbox = readFileSync("templates/partials/lightbox.html", "utf8");
+
+export function renderProjectLightbox(projects) {
+  return projects.some((project) => project.images?.length || project.gallery?.length)
+    ? lightbox
+    : "";
+}
+
 function responsiveAttrs(src) {
   return `src="${src}" loading="lazy" decoding="async"`;
 }
-function comparisonMarkup(p, height = "h-80 lg:h-[470px]") {
-  return `<div data-comparison class="comparison ${height} rounded-2xl bg-stone-200"><img class="comparison-after" ${responsiveAttrs(p.after)} alt="Après ${p.title}"><div data-comparison-before class="comparison-before"><img ${responsiveAttrs(p.before)} alt="Avant ${p.title}"></div><input type="range" min="0" max="100" value="50" aria-label="Comparer avant et après"><span class="label before-label">AVANT</span><span class="label after-label">APRÈS</span><span data-comparison-handle class="handle"><i class="bi bi-arrow-left-right"></i></span></div>`;
+function comparisonMarkup(p) {
+  return `<div data-comparison class="comparison h-80 lg:h-[470px] rounded-2xl bg-stone-200"><img class="comparison-after" ${responsiveAttrs(p.after)} alt="Après ${p.title}"><div data-comparison-before class="comparison-before"><img ${responsiveAttrs(p.before)} alt="Avant ${p.title}"></div><input type="range" min="0" max="100" value="50" aria-label="Comparer avant et après"><span class="label before-label">AVANT</span><span class="label after-label">APRÈS</span><span data-comparison-handle class="handle"><i class="bi bi-arrow-left-right"></i></span></div>`;
 }
 function galleryMarkup(p, height = "h-80 lg:h-[470px]") {
   const imgs = p.images || [];
@@ -16,8 +26,8 @@ function galleryMarkup(p, height = "h-80 lg:h-[470px]") {
    <img class="awz-zoomable h-full w-full object-cover" src="${second}" loading="lazy" decoding="async" alt="${p.title}">
  </div>`;
 }
-function mediaMarkup(p, height) {
-  return p.mode === "compare" ? comparisonMarkup(p, height) : galleryMarkup(p, height);
+function mediaMarkup(p) {
+  return p.mode === "compare" ? comparisonMarkup(p) : galleryMarkup(p);
 }
 function extraGallery(p) {
   const imgs = p.mode === "compare" ? p.gallery || [] : (p.images || []).slice(2);
@@ -70,7 +80,7 @@ export function renderHomeProject(projects) {
   const p = escapedProject(selected);
   const media =
     p.mode === "compare"
-      ? `<div data-comparison class="home-comparison h-72 sm:h-96 lg:h-[480px] bg-stone-200"><img class="home-after" src="${p.after}" alt="Après ${p.title}" loading="lazy" decoding="async"><div data-comparison-before class="home-before"><img src="${p.before}" alt="Avant ${p.title}" loading="lazy" decoding="async"></div><input type="range" min="0" max="100" value="50" aria-label="Comparer avant et après"><span class="home-label home-before-label">AVANT</span><span class="home-label home-after-label">APRÈS</span><span data-comparison-handle class="home-handle"><i class="bi bi-arrow-left-right"></i></span></div>`
+      ? `<div data-comparison class="home-comparison h-72 sm:h-96 lg:h-[480px] bg-stone-200"><img src="${p.after}" alt="Après ${p.title}" loading="lazy" decoding="async"><div data-comparison-before class="home-before"><img src="${p.before}" alt="Avant ${p.title}" loading="lazy" decoding="async"></div><input type="range" min="0" max="100" value="50" aria-label="Comparer avant et après"><span class="home-label home-before-label">AVANT</span><span class="home-label home-after-label">APRÈS</span><span data-comparison-handle class="home-handle"><i class="bi bi-arrow-left-right"></i></span></div>`
       : galleryMarkup(p, "h-72 sm:h-96 lg:h-[480px]");
   return `<a href="${p.file}" class="block group"><article class="w-full overflow-hidden rounded-3xl bg-white shadow-sm transition group-hover:shadow-lg">${media}<div class="p-5 sm:p-7 flex items-center justify-between gap-5"><div><h3 class="text-xl sm:text-2xl font-semibold">${p.title}</h3><p class="mt-1 text-sm text-slate-600">${p.copy}</p></div><span class="shrink-0 inline-flex h-11 w-11 items-center justify-center rounded-full bg-awz text-white"><i class="bi bi-arrow-right"></i></span></div></article></a>`;
 }
@@ -80,7 +90,7 @@ export function renderCityProjects(projects) {
     .slice(0, 3)
     .map((project) => {
       const p = escapedProject(project);
-      return `<a href="${p.file}" class="group overflow-hidden rounded-2xl border border-stone-200 bg-white"><img src="${p.after || p.images[0]}" alt="${p.title} par AWZ-Rénovation" loading="lazy" decoding="async" class="h-48 w-full object-cover"><div class="p-4"><p class="text-xs uppercase tracking-[.16em] text-stone-500">${p.label}</p><h3 class="mt-1 font-semibold text-awz">${p.title}</h3></div></a>`;
+      return `<a href="${p.file}" class="overflow-hidden rounded-2xl border border-stone-200 bg-white"><img src="${p.after || p.images[0]}" alt="${p.title} par AWZ-Rénovation" loading="lazy" decoding="async" class="h-48 w-full object-cover"><div class="p-4"><p class="text-xs uppercase tracking-[.16em] text-stone-500">${p.label}</p><h3 class="mt-1 font-semibold text-awz">${p.title}</h3></div></a>`;
     })
     .join("");
 }

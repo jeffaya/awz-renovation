@@ -28,6 +28,8 @@ test.beforeEach(async ({ page }) => {
 for (const filename of pages) {
   test(`${filename}: valid static content, assets and navigation`, async ({ page }) => {
     const errors = [];
+    const requested = new Set();
+    page.on("request", (request) => requested.add(new URL(request.url()).pathname));
     page.on("pageerror", (error) => errors.push(error.message));
     page.on("response", (response) => {
       if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
@@ -51,6 +53,12 @@ for (const filename of pages) {
         await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),
       ).toBe(true);
     // The legal page's pre-existing narrow nested footer remains unchanged.
+    const hasProjectControls =
+      (await page.locator("[data-comparison], #project-filters").count()) > 0;
+    const hasGallery = (await page.locator("img.awz-zoomable:not(a img)").count()) > 0;
+    expect(requested.has("/assets/js/projects.js")).toBe(hasProjectControls);
+    expect(requested.has("/assets/js/lightbox.js")).toBe(hasGallery);
+    await expect(page.locator("#awz-lightbox")).toHaveCount(hasGallery ? 1 : 0);
     expect(errors).toEqual([]);
     expect(await page.locator('script[src*="cdn.tailwindcss.com"]').count()).toBe(0);
     expect(await page.locator('link[href*="cdn.jsdelivr.net"]').count()).toBe(0);
@@ -70,8 +78,8 @@ test("menu closes with Escape, navigation and the desktop breakpoint", async ({ 
   await expect(page.locator("body")).not.toHaveClass(/no-scroll/);
   await page.setViewportSize({ width: 390, height: 844 });
   await button.click();
-  await page.locator('#mobile-menu a[href="index.html#services"]').click();
-  await expect(page).toHaveURL(/index.html#services$/);
+  await page.locator('#mobile-menu a[href="/#services"]').click();
+  await expect(page).toHaveURL(/\/#services$/);
   await expect(button).toHaveAttribute("aria-expanded", "false");
 });
 test("all project filters preserve cards and comparison positions", async ({ page }) => {
@@ -106,6 +114,19 @@ test("all project filters preserve cards and comparison positions", async ({ pag
   );
   await expect(page.locator("#projects-empty")).toBeHidden();
 });
+test("homepage loads only the hero image matching its viewport", async ({ page }) => {
+  const requested = [];
+  page.on("request", (request) => {
+    const { pathname } = new URL(request.url());
+    if (pathname.startsWith("/assets/images/site/hero/")) requested.push(pathname);
+  });
+  await page.goto("/");
+  const hero = page.locator("#accueil picture img");
+  await hero.evaluate((image) => image.decode());
+  const filename = page.viewportSize().width < 640 ? "renovation-mobile.webp" : "renovation.webp";
+  expect(requested).toEqual(["/assets/images/site/hero/" + filename]);
+});
+
 test("homepage slider can be used without opening the project link", async ({ page }) => {
   await page.goto("/index.html");
   const slider = page.locator("#home-project input");

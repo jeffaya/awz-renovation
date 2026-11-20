@@ -4,6 +4,7 @@ import { buildProjects } from "./projects.mjs";
 import { renderCity, renderPartials } from "./pages.mjs";
 import {
   renderHomeProject,
+  renderProjectLightbox,
   renderFeaturedProjects,
   renderCityProjects,
 } from "./render-projects.mjs";
@@ -24,7 +25,7 @@ const projects = buildProjects();
 const projectTokens = {
   HOME_PROJECT: renderHomeProject(projects),
   FEATURED_PROJECTS: renderFeaturedProjects(projects, mailto),
-  CITY_PROJECTS: renderCityProjects(projects),
+  PROJECT_LIGHTBOX: renderProjectLightbox(projects),
   SERVICE_LINKS: renderServiceLinks(),
   HOME_FAQ: renderFaq(faq.slice(0, 4), "Votre projet, en pratique"),
 };

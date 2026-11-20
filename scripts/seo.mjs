@@ -1,7 +1,8 @@
 import { artisan, site, businessData } from "./config.mjs";
 import { escapeHtml } from "./html.mjs";
 
-export const pageUrl = (file = "") => `${site.siteUrl}/${file === "index.html" ? "" : file}`;
+export const pageUrl = (file = "") =>
+  new URL(file === "index.html" ? "/" : file, site.siteUrl).href;
 export const jsonLd = (data) => JSON.stringify(data).replace(/</g, "\\u003c");
 
 export function pageSchema({ file, title, description, breadcrumbs, entity }) {

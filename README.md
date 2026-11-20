@@ -61,6 +61,6 @@ Les vérifications GitHub Actions sont décrites dans [Maintenance](docs/mainten
 
 ## Publication
 
-**Seul `dist/` est à publier.** `wrangler.jsonc` référence déjà `./dist` pour Cloudflare. La commande de build est `npm run build` ; le dossier peut également être servi sur un hébergement statique classique.
+La commande `npm run build` génère le site statique dans `dist/`. Sur Cloudflare, Wrangler publie ce dossier sur `https://awz-renovation.com` et déploie `worker.mjs` pour rediriger les liens de l’ancien hôte. Sur un autre hébergement statique, publier le contenu de `dist/` et configurer les redirections chez l’hébergeur.
 
 Les URLs SEO proviennent de `assets/config/site.json` → `siteUrl`, avec une surcharge possible par `SITE_URL`. `SITE_INDEXABLE=false` réserve un build à une prévisualisation non indexable. Voir le [guide SEO](docs/seo.md) avant de changer de domaine. Les détails et la distinction entre vérification CI et déploiement sont dans le [guide de maintenance](docs/maintenance.md).

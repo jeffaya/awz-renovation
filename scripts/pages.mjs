@@ -9,12 +9,12 @@ const partials = Object.fromEntries(
     readFileSync(`templates/partials/${name}.html`, "utf8"),
   ]),
 );
+const defaultBusinessSchema = businessSchema();
 const cityTemplate = readFileSync("templates/pages/city.html", "utf8");
 
 export function renderPartials(text, values = {}) {
   const tokens = {
-    BUSINESS_SCHEMA: businessSchema(),
-    HOME_SCHEMA: businessSchema(),
+    BUSINESS_SCHEMA: defaultBusinessSchema,
     ...values,
   };
   return replaceTokens(text, {
@@ -27,7 +27,7 @@ export function renderPartials(text, values = {}) {
 
 export function renderCity(city, values = {}) {
   const breadcrumbs = [
-    { name: "Accueil", file: "index.html" },
+    { name: "Accueil", file: "/" },
     { name: "Zones d’intervention", file: "zones-intervention.html" },
     { name: city.city, file: city.file },
   ];
