@@ -28,6 +28,8 @@ test.beforeEach(async ({ page }) => {
 for (const filename of pages) {
   test(`${filename}: valid static content, assets and navigation`, async ({ page }) => {
     const errors = [];
+    const requested = new Set();
+    page.on("request", (request) => requested.add(new URL(request.url()).pathname));
     page.on("pageerror", (error) => errors.push(error.message));
     page.on("response", (response) => {
       if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
@@ -51,6 +53,12 @@ for (const filename of pages) {
         await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),
       ).toBe(true);
     // The legal page's pre-existing narrow nested footer remains unchanged.
+    const hasProjectControls =
+      (await page.locator("[data-comparison], #project-filters").count()) > 0;
+    const hasGallery = (await page.locator("img.awz-zoomable:not(a img)").count()) > 0;
+    expect(requested.has("/assets/js/projects.js")).toBe(hasProjectControls);
+    expect(requested.has("/assets/js/lightbox.js")).toBe(hasGallery);
+    await expect(page.locator("#awz-lightbox")).toHaveCount(hasGallery ? 1 : 0);
     expect(errors).toEqual([]);
     expect(await page.locator('script[src*="cdn.tailwindcss.com"]').count()).toBe(0);
     expect(await page.locator('link[href*="cdn.jsdelivr.net"]').count()).toBe(0);

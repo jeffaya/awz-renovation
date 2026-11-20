@@ -1,4 +1,4 @@
-export function initComparisons() {
+function initComparisons() {
   document.querySelectorAll("[data-comparison]").forEach((comparison) => {
     const input = comparison.querySelector('input[type="range"]');
     const before = comparison.querySelector("[data-comparison-before]");
@@ -15,7 +15,7 @@ export function initComparisons() {
   });
 }
 
-export function initFilters() {
+function initFilters() {
   const filters = document.getElementById("project-filters");
   const empty = document.getElementById("projects-empty");
   if (!filters || !empty) return;
@@ -38,3 +38,6 @@ export function initFilters() {
     empty.hidden = visible > 0;
   });
 }
+
+initComparisons();
+initFilters();

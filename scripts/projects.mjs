@@ -64,7 +64,6 @@ export function buildProjects(root = "assets/images/realisations") {
       if (!before && !numbers.length) throw new Error(`${meta.date}: aucune image trouvée`);
       const base = `assets/images/realisations/${meta.date}`;
       return {
-        id: meta.date,
         file: `realisation-${meta.date}.html`,
         date: meta.date,
         cat: meta.category,

@@ -41,7 +41,7 @@ Pour ajouter un partial, l'enregistrer dans `scripts/pages.mjs` et insérer son 
 Le contenu des villes vient de [assets/config/cities.json](../assets/config/cities.json). Le HTML commun est [templates/pages/city.html](../templates/pages/city.html). Ne pas créer à la main un HTML racine portant le même nom qu'une ville : le build refuserait cette collision.
 
 1. Copier une entrée existante du tableau et adapter tous ses contenus à la ville réellement desservie.
-2. Choisir un `file` unique en minuscules et tirets, terminé par `.html`. Ce champ détermine l'URL publiée. Le champ `slug` actuellement présent n'est pas utilisé par le rendu.
+2. Choisir un `file` unique en minuscules et tirets, terminé par `.html`. Ce champ détermine l'URL publiée.
 3. Renseigner `city`, `title`, `description`, `heroImage`, `heroAlt`, `heroTitle`, `heroCopy`, `localTitle` et le tableau `localParagraphs`. Ajouter `serviceFiles` avec les noms des prestations pertinentes dans `services.json`.
 4. Vérifier l'image, son texte alternatif et ses éventuels crédits. Un chemin local part de la racine des pages, par exemple `assets/images/site/...` ; une URL distante dépend du service qui l'héberge.
 5. Ajouter les liens de navigation nécessaires. Rechercher les listes existantes dans `zones-intervention.html`, `contact.html`, `templates/partials/footer.html` et `templates/partials/zones.html` ; elles ne sont pas synchronisées automatiquement avec le JSON.

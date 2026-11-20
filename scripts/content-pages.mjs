@@ -2,7 +2,11 @@ import { readFileSync } from "node:fs";
 import { artisan, cities } from "./config.mjs";
 import { renderPartials } from "./pages.mjs";
 import { escapeHtml } from "./html.mjs";
-import { renderCityProjects, renderProjectMedia } from "./render-projects.mjs";
+import {
+  renderCityProjects,
+  renderProjectLightbox,
+  renderProjectMedia,
+} from "./render-projects.mjs";
 import { pageUrl, pageSchema, renderBreadcrumbs, renderFaq } from "./seo.mjs";
 
 export const services = JSON.parse(readFileSync("assets/config/services.json", "utf8"));
@@ -57,6 +61,7 @@ export function renderServiceLinks(files = services.map((service) => service.fil
 function renderDetail(
   { file, title, description, heading, intro, image, caption, body, breadcrumbs, entity },
   tokens,
+  lightbox = "",
 ) {
   return renderPartials(detailTemplate, {
     ...tokens,
@@ -75,6 +80,7 @@ function renderDetail(
     DETAIL_BREADCRUMBS: renderBreadcrumbs(breadcrumbs),
     DETAIL_SCHEMA: pageSchema({ file, title, description, breadcrumbs, entity }),
     DETAIL_BODY: body,
+    PROJECT_LIGHTBOX: lightbox,
   });
 }
 
@@ -127,7 +133,7 @@ export function projectImages(project) {
 
 export function renderProject(project, tokens) {
   const service = services.find((entry) => entry.category === project.cat);
-  if (!service) throw new Error(`${project.id}: prestation introuvable`);
+  if (!service) throw new Error(`${project.date}: prestation introuvable`);
   const images = projectImages(project);
   const title = `${project.title}${project.city ? ` à ${project.city}` : ""} | AWZ-Rénovation`;
   const breadcrumbs = [
@@ -181,6 +187,7 @@ export function renderProject(project, tokens) {
       },
     },
     tokens,
+    renderProjectLightbox([project]),
   );
 }
 

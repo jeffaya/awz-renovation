@@ -16,7 +16,6 @@ for (const key of [
   "city",
   "siret",
   "artisanFirstName",
-  "artisanLastName",
   "artisanFullName",
 ]) {
   if (typeof artisan[key] !== "string" || !artisan[key].trim())
@@ -70,12 +69,10 @@ const baseTokens = Object.fromEntries(
     ARTISAN_PHONE: artisan.phone,
     ARTISAN_PHONE_HREF: artisan.phoneHref,
     ARTISAN_EMAIL: artisan.email,
-    ARTISAN_ADDRESS: artisan.address,
     ARTISAN_FULL_ADDRESS: fullAddress,
     ARTISAN_SIRET: artisan.siret,
     SITE_URL: site.siteUrl,
     ARTISAN_FIRST_NAME: artisan.artisanFirstName,
-    ARTISAN_LAST_NAME: artisan.artisanLastName,
     ARTISAN_FULL_NAME: artisan.artisanFullName,
     ARTISAN_MAILTO: mailto,
   }).map(([key, value]) => [key, escapeHtml(value)]),

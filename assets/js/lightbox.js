@@ -1,4 +1,4 @@
-export function initLightbox() {
+function initLightbox() {
   const box = document.getElementById("awz-lightbox");
   const picture = document.getElementById("awz-lightbox-image");
   const closeButton = document.getElementById("awz-lightbox-close");
@@ -54,3 +54,5 @@ export function initLightbox() {
     }
   });
 }
+
+initLightbox();

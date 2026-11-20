@@ -15,7 +15,7 @@ Les liens de devis ouvrent le logiciel e-mail du visiteur avec `mailto:`. Les nu
 | Chemin                                     | Responsabilité                                                                        |
 | ------------------------------------------ | ------------------------------------------------------------------------------------- |
 | `index.html`                               | Accueil : présentation, avis, services, réalisation mise en avant, artisan et contact |
-| `realisations.html`                        | Filtres, emplacement des réalisations et structure de la visionneuse                  |
+| `realisations.html`                        | Filtres et emplacement des réalisations                                               |
 | `contact.html`                             | Coordonnées et zone d'intervention ; aucun formulaire                                 |
 | `zones-intervention.html`                  | Présentation des zones, carte illustrée et liens vers les villes                      |
 | `mentions-legales.html`                    | Mentions légales et crédits photographiques                                           |
@@ -54,7 +54,9 @@ Les liens de devis ouvrent le logiciel e-mail du visiteur avec `mailto:`. Les nu
 | `mobile-cta.html`                  | `PARTIAL_MOBILE_CTA`    | Actions fixes Appeler / Devis sur mobile                                    |
 | `zones.html`                       | `PARTIAL_ZONES`         | Section commune de proximité et de contact                                  |
 
-La liste des partials est explicite dans `scripts/pages.mjs` : créer un nouveau fichier ne suffit pas à l'enregistrer. La composition reste choisie dans chaque page. Contact n'inclut ni bandeau d'urgence ni CTA mobile fixe ; Zones n'inclut pas le CTA mobile fixe. Mentions légales charge uniquement les utilitaires et `app.js`, sans la CSS des composants ni les icônes. Ces différences sont existantes, pas des erreurs à corriger automatiquement.
+La visionneuse et son module sont insérés via `templates/partials/lightbox.html` sur le portfolio et les fiches qui proposent des photos à agrandir.
+
+La liste des autres partials est explicite dans `scripts/pages.mjs` : créer un nouveau fichier ne suffit pas à l'enregistrer. La composition reste choisie dans chaque page. Contact n'inclut ni bandeau d'urgence ni CTA mobile fixe ; Zones n'inclut pas le CTA mobile fixe. Mentions légales charge uniquement les utilitaires et `app.js`, sans la CSS des composants ni les icônes. Ces différences sont existantes, pas des erreurs à corriger automatiquement.
 
 ## 3. Build : entrées, étapes et sorties
 
@@ -97,7 +99,7 @@ Les JSON de configuration, les templates, les scripts Node, les tests et la docu
 
 ### Artisan et site
 
-Tous les champs suivants d'`artisan.json` sont des chaînes non vides : `name`, `phone`, `phoneHref`, `email`, `address`, `postalCode`, `city`, `siret`, `artisanFirstName`, `artisanLastName`, `artisanFullName`.
+Tous les champs suivants d'`artisan.json` sont des chaînes non vides : `name`, `phone`, `phoneHref`, `email`, `address`, `postalCode`, `city`, `siret`, `artisanFirstName`, `artisanFullName`.
 
 `phone` est le texte affiché ; `phoneHref` est la valeur du lien `tel:` sans le préfixe. `artisanFullName` est un champ explicite : il n'est pas recalculé à partir du prénom et du nom. L'objet du lien de devis est dérivé du nom de l'entreprise.
 
@@ -119,25 +121,24 @@ Les coordonnées injectées et le JSON-LD sont centralisés. Certains textes éd
 | `localTitle`            | Titre de la section locale                                                                                       |
 | `localParagraphs`       | Tableau de chaînes ; premier paragraphe en `mt-6`, suivants en `mt-4`                                            |
 | `serviceFiles`          | Tableau facultatif de noms de pages connus dans `services.json` ; sans ce champ, tous les services sont proposés |
-| `slug`                  | Présent dans les données actuelles mais non consommé par le rendu ; `file` détermine l'URL                       |
 
-Tous les champs de type chaîne du tableau sauf `slug` sont obligatoires et non vides. `localParagraphs` doit être un tableau ; le code accepte un tableau vide. Les listes de liens vers les villes ne sont pas générées depuis ce JSON : voir [Maintenance](maintenance.md).
+Tous les champs de type chaîne du tableau sont obligatoires et non vides. `localParagraphs` doit être un tableau ; le code accepte un tableau vide. Les listes de liens vers les villes ne sont pas générées depuis ce JSON : voir [Maintenance](maintenance.md).
 
 ### Réalisations : source et forme interne
 
 Le [guide d'ajout](ajouter-realisation.md) décrit le JSON source. `buildProjects()` le transforme ainsi :
 
-| Champ source                                                         | Champ rendu / valeur dérivée                                            |
-| -------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `date`                                                               | `id`, `date`, `file: realisation-YYYY-MM-DD.html`, puis tri décroissant |
-| `category`                                                           | `cat`, utilisé par `data-category` et les filtres                       |
-| `description`                                                        | `copy`, texte des cartes                                                |
-| `city`, `context`, `duration`, `surface`, `materials`, `workDetails` | Conservés si renseignés ; voir le guide d’ajout                         |
-| `label`, `title`, `points`                                           | Conservés                                                               |
-| Paire `avant.webp` / `apres.webp` présente                           | `mode: "compare"`, `before`, `after`, `gallery`                         |
-| Photos numérotées sans paire                                         | `mode: "gallery"`, `images`                                             |
+| Champ source                                                         | Champ rendu / valeur dérivée                                      |
+| -------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `date`                                                               | `date`, `file: realisation-YYYY-MM-DD.html`, puis tri décroissant |
+| `category`                                                           | `cat`, utilisé par `data-category` et les filtres                 |
+| `description`                                                        | `copy`, texte des cartes                                          |
+| `city`, `context`, `duration`, `surface`, `materials`, `workDetails` | Conservés si renseignés ; voir le guide d’ajout                   |
+| `label`, `title`, `points`                                           | Conservés                                                         |
+| Paire `avant.webp` / `apres.webp` présente                           | `mode: "compare"`, `before`, `after`, `gallery`                   |
+| Photos numérotées sans paire                                         | `mode: "gallery"`, `images`                                       |
 
-`mode`, `id`, `file`, `cat`, `copy`, les chemins et les tableaux d'images sont calculés ; ne pas les saisir dans le JSON éditorial.
+`mode`, `file`, `cat`, `copy`, les chemins et les tableaux d'images sont calculés ; ne pas les saisir dans le JSON éditorial.
 
 ### Règles de sélection et rendu
 
@@ -167,7 +168,7 @@ Les tokens reconnus utilisent des lettres majuscules et underscores : `{{ARTISAN
 | Page locale                | `CITY_TITLE`, `CITY_DESCRIPTION`, `CITY_CANONICAL`, `CITY_HERO_*`, `CITY_LOCAL_*` dans `pages.mjs`           |
 | Pages détaillées           | `DETAIL_*` dans `content-pages.mjs` ; HTML du contenu et métadonnées séparés                                 |
 | Prestations / FAQ          | `SERVICE_LINKS`, `CITY_SERVICE_LINKS`, `HOME_FAQ` préparés au build                                          |
-| Données structurées        | `HOME_SCHEMA`, `BUSINESS_SCHEMA`, insérés dans des scripts `application/ld+json`                             |
+| Données structurées        | `BUSINESS_SCHEMA` et `DETAIL_SCHEMA`, insérés dans des scripts `application/ld+json`                         |
 
 `replaceTokens()` effectue un remplacement en une passe. Les partials sont chargés une fois, puis leurs tokens de coordonnées et de contenu sont résolus pour chaque rendu avant leur insertion. Il n'y a pas de moteur de template récursif, de boucle ou de condition dans les HTML.
 
@@ -189,7 +190,7 @@ Les dépendances exactes sont verrouillées dans `package-lock.json`. Tailwind r
 
 Les icônes sont sélectionnées de la même manière à partir des noms `bi-*` présents dans le HTML. La police entière est copiée ; elle n'est pas réduite à quelques glyphes.
 
-L'ordre de chargement est intentionnel : `styles.css`, puis `utilities.css`. Changer cet ordre peut modifier la cascade. Les couleurs personnalisées `awz`, `sand` et `stone2` sont définies dans `styles.mjs`, pas dans un `tailwind.config.js` séparé.
+L'ordre de chargement est intentionnel : `styles.css`, puis `utilities.css`. Changer cet ordre peut modifier la cascade. Les couleurs personnalisées `awz` et `sand` sont définies dans `styles.mjs`, pas dans un `tailwind.config.js` séparé.
 
 La CSS source est organisée par composants : base/navigation, avis, liens et boutons, projets, actions mobiles, témoignages, villes, zones, comparateurs, visionneuse et carte. Les breakpoints CSS des composants ne coïncident pas tous avec les breakpoints Tailwind ; préserver les deux lors d'une modification responsive.
 
@@ -197,7 +198,7 @@ Les comparateurs accueil et portfolio partagent le comportement mais ont des sty
 
 ## 7. JavaScript et contrat DOM
 
-`app.js` est chargé en module, donc après analyse du document. Il initialise navigation, comparateurs et filtres, met à jour `#year`, puis importe `lightbox.js` seulement si `#awz-lightbox` existe.
+`app.js` est chargé en module, donc après analyse du document. Il initialise la navigation, met à jour `#year` et charge `projects.js` sur les pages qui contiennent un comparateur ou les filtres. Le fragment de la visionneuse charge directement `lightbox.js`.
 
 | Module                       | Sélecteurs à préserver                                                                             | Comportement                                                                                                                            |
 | ---------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |

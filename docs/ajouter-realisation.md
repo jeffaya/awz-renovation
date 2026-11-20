@@ -102,7 +102,7 @@ Omettre une information inconnue ; ne pas écrire une valeur vide ni déduire la
 
 Choisir la catégorie principale d'un chantier mixte. Il n'y a qu'une catégorie par entrée. Pour créer une nouvelle catégorie, voir [Maintenance](maintenance.md) : cela nécessite de modifier aussi la validation, les filtres et les tests.
 
-Ne pas ajouter `id`, `file`, `mode`, `cat`, `copy`, `before`, `after`, `gallery` ou `images` dans le JSON : le build les calcule. Seules les métadonnées facultatives documentées ci-dessus enrichissent la fiche.
+Ne pas ajouter `file`, `mode`, `cat`, `copy`, `before`, `after`, `gallery` ou `images` dans le JSON : le build les calcule. Seules les métadonnées facultatives documentées ci-dessus enrichissent la fiche.
 
 ## 4. Comprendre où le chantier apparaîtra
 
